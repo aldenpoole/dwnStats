@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using dwnStats.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace dwnStats
 {
@@ -26,6 +28,9 @@ namespace dwnStats
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            services.AddDbContext<UserContext>(opt => opt.UseSqlServer
+            (Configuration.GetConnectionString("UserConnection")));
+            services.AddScoped<IUserRepo, SqlUserRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
