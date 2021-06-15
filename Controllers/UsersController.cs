@@ -27,7 +27,7 @@ namespace Download.Controllers
         }
         //GET api/users/{id}
         [HttpGet("{id}")]
-        public ActionResult <User> GetUserById(int id)
+        public ActionResult <User> GetUserById(string id)
         {
             var userItem = _repository.GetUserById(id);
 

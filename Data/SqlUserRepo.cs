@@ -17,7 +17,7 @@ namespace dwnStats.Data
             return _context.Users.ToList();
         }
 
-        public User GetUserById(int id)
+        public User GetUserById(string id)
         {
            return _context.Users.FirstOrDefault(p => p.uid == id);
         }
