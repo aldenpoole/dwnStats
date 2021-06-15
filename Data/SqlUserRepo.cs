@@ -21,5 +21,7 @@ namespace dwnStats.Data
         {
            return _context.Users.FirstOrDefault(p => p.uid == id);
         }
+
+        
     }
 }
