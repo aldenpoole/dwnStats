@@ -38,5 +38,11 @@ namespace dwnStats.Data
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void UpdateUser(User usr)
+        {
+            //nothing
+            
+        }
     }
 }

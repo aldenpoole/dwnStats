@@ -10,5 +10,6 @@ namespace dwnStats.Data
         IEnumerable<User> GetAllUsers();
         User GetUserById(int uid);
         void CreateUser(User usr);
+        void UpdateUser(User usr);
     }
 }
