@@ -5,7 +5,10 @@ namespace dwnStats.Data
 {
     public interface IUserRepo
     {
+        bool SaveChanges();
+
         IEnumerable<User> GetAllUsers();
-        User GetUserById(int id);
+        User GetUserById(int uid);
+        void CreateUser(User usr);
     }
 }

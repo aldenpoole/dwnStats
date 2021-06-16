@@ -8,7 +8,9 @@ namespace dwnStats.Profiles
     {
         public UsersProfile()
         {
+            //source -> target... reading user from database, passing back to client as dto
             CreateMap<User, UserReadDto>();
+            CreateMap<UserCreateDto, User>();
         }
     }
 }
