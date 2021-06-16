@@ -1,3 +1,6 @@
+//Alden Poole
+//Parsons Intern Project 2021
+
 using System.ComponentModel.DataAnnotations;
 
 namespace dwnStats.Dtos

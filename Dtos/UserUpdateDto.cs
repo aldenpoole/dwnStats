@@ -3,27 +3,21 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace dwnStats.Models
+namespace dwnStats.Dtos
 {
-    public class User
+    public class UserUpdateDto
     {
-        [Key]
-        public int uid {get;set;}
 
         [Required]
-        [MaxLength(64)]
         public string firstName {get;set;}
-
         [Required]
         public string lastName {get;set;}
-
         [Required]
         public string userName{get;set;}
-
         [Required]
         public string password{get;set;}
+
         
-    
     }
 
 }
