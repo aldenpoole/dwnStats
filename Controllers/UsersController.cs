@@ -26,7 +26,7 @@ namespace Download.Controllers
         {
             var userItems = _repository.GetAllUsers();
 
-            return Ok(userItems);
+            return Ok(_mapper.Map<IEnumerable<UserReadDto>>(userItems));
         }
         //GET api/users/{id}
         [HttpGet("{id}")]
