@@ -6,6 +6,6 @@ namespace dwnStats.Data
     public interface IUserRepo
     {
         IEnumerable<User> GetAllUsers();
-        User GetUserById(string id);
+        User GetUserById(int id);
     }
 }

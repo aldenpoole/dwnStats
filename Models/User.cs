@@ -5,7 +5,7 @@ namespace dwnStats.Models
     public class User
     {
         [Key]
-        public string uid {get;set;}
+        public int uid {get;set;}
 
         [Required]
         [MaxLength(64)]
