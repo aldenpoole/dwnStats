@@ -1,9 +1,13 @@
+//Alden Poole
+//Parsons Intern Project 2021
+
 using System.Collections.Generic;
 using dwnStats.Models;
 using Microsoft.AspNetCore.Mvc;
 using dwnStats.Data;
 using AutoMapper;
 using dwnStats.Dtos;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Download.Controllers
 {
@@ -66,6 +70,44 @@ namespace Download.Controllers
             _mapper.Map(userUpdateDto, userModelFromRepo);
 
             _repository.UpdateUser(userModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+          //PATCH api/users/{uid}
+        [HttpPatch("{uid}")]
+        public ActionResult PartialUserUpdate(int uid, JsonPatchDocument<UserUpdateDto> patchDoc)
+        {
+            var userModelFromRepo = _repository.GetUserById(uid);
+            if(userModelFromRepo == null){
+                return NotFound();
+            }
+            var userToPatch = _mapper.Map<UserUpdateDto>(userModelFromRepo);
+            patchDoc.ApplyTo(userToPatch, ModelState);
+            if(!TryValidateModel(userToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(userToPatch, userModelFromRepo);
+
+            _repository.UpdateUser(userModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        //DELETE api/users/{uid}
+        [HttpDelete("{uid}")]
+        public ActionResult UserDelete(int uid)
+        {
+            var userModelFromRepo = _repository.GetUserById(uid);
+            if(userModelFromRepo == null){
+                return NotFound();
+            }
+            
+            _repository.DeleteUser(userModelFromRepo);
             _repository.SaveChanges();
 
             return NoContent();

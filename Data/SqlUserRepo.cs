@@ -1,3 +1,6 @@
+//Alden Poole
+//Parsons Intern Project 2021
+
 using dwnStats.Models;
 using System;
 using System.Collections.Generic;
@@ -22,6 +25,14 @@ namespace dwnStats.Data
 
             _context.Users.Add(usr);
 
+        }
+
+        public void DeleteUser(User usr)
+        {
+            if(usr == null){
+                throw new ArgumentNullException(nameof(usr));
+            }
+            _context.Users.Remove(usr);
         }
 
         public IEnumerable<User> GetAllUsers()

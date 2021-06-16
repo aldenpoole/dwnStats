@@ -1,3 +1,6 @@
+//Alden Poole
+//Parsons Intern Project 2021
+
 namespace dwnStats.Dtos
 {
     public class UserReadDto
