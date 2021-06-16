@@ -54,6 +54,22 @@ namespace Download.Controllers
 
             //return Ok(userReadDto);
         }
+        //PUT api/users/{uid}
+        [HttpPut("{uid}")]
+        public ActionResult UpdateUser(int uid, UserUpdateDto userUpdateDto)
+        {
+            var userModelFromRepo = _repository.GetUserById(uid);
+            if(userModelFromRepo == null){
+                return NotFound();
+            }
+
+            _mapper.Map(userUpdateDto, userModelFromRepo);
+
+            _repository.UpdateUser(userModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 
 }
