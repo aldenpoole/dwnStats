@@ -10,10 +10,12 @@ Once you've done that, change the connection string in appsettings.json to your 
 Finally, there may still be some errors if you do not have some extra packages I installed. VS may prompt you to install them, or you can start a new terminal
 in the project and run:
 ```
+dotnet add package Microsoft.AspNetCore.SpaServices.Extensions
 dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
 dotnet add package Microsoft.AspNetCore.JsonPatch
+dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 ```
 Then, run it like any other VS project and go to localhost:5000/api/users
