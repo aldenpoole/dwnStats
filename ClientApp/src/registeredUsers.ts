@@ -1,5 +1,5 @@
 export interface RegisteredUsers {
-    userid: string;
+    userid: number;
     firstname: string;
     lastname: string;
 }
