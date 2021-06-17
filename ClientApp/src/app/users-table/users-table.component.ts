@@ -1,53 +1,43 @@
-//import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, ViewChild } from '@angular/core';
 import { Component, OnInit  } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { tap } from 'rxjs/operators';
 import { RegisteredUsers } from 'src/registeredUsers';
 import { RegUsersService } from '../reg-users.service';
-import { UsersTableDataSource, UsersTableItem } from './users-table-datasource';
+import { UsersTableDataSource} from './users-table-datasource';
+
+
 
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.css']
 })
-export class UsersTableComponent implements OnInit {
-  EXAMPLE_DATA: RegisteredUsers[] = [];
-  displayedColumns = ['userid', 'firstname', 'lastname'];
-  dataSource = new MatTableDataSource<RegisteredUsers>(this.EXAMPLE_DATA);
+export class UsersTableComponent implements OnInit, AfterViewInit {
 
-  constructor(private service: RegUsersService) {}
+  displayedColumns: string[] = ["id", "firstName", "lastName", "userName"];
+  dataSource!: UsersTableDataSource;
+  data: RegisteredUsers[] = [];
+
+  usersCount = 10;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  //@ViewChild(MatSort) sort: MatSort;
+
+  constructor(private regUsersService: RegUsersService) {}
 
   ngOnInit() {
-    this.getAllUsers();
+    this.dataSource = new UsersTableDataSource(this.regUsersService);
+    this.dataSource.loadUsers();
   }
 
-  public getAllUsers() {
-    let resp=this.service.regUsers();
-    resp.subscribe(report=>this.dataSource.data=report as RegisteredUsers[])
+  ngAfterViewInit() {
+    this.paginator.page.pipe(tap(() => this.loadUsersPage())).subscribe();
+  }
+
+  loadUsersPage() {
+    this.dataSource.loadUsers("id", "ASC", this.paginator.pageIndex+1);
   }
 }
-
-
-// export class UsersTableComponent implements AfterViewInit {
-//   @ViewChild(MatPaginator) paginator!: MatPaginator;
-//   @ViewChild(MatSort) sort!: MatSort;
-//   @ViewChild(MatTable) table!: MatTable<UsersTableItem>;
-//   //dataSource: UsersTableDataSource;
-
-//   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-//   displayedColumns = ['userid', 'firstname', 'lastname'];
-
-//   // constructor() {
-//   //   this.dataSource = new UsersTableDataSource();
-//   // }
-
-//   constructor(private service: RegUsersService) {}
-
-//   // ngAfterViewInit(): void {
-//   //   this.dataSource.sort = this.sort;
-//   //   this.dataSource.paginator = this.paginator;
-//   //   this.table.dataSource = this.dataSource;
-//   // }
-// }
