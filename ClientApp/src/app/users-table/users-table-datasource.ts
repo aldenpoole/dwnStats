@@ -1,100 +1,37 @@
-import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { RegisteredUsers } from 'src/registeredUsers';
+import { catchError, finalize } from "rxjs/operators";
+import { CollectionViewer, DataSource } from "@angular/cdk/collections";
+import { Observable, BehaviorSubject, of } from "rxjs";
+import { RegUsersService } from "../reg-users.service";
 
-// TODO: Replace this with your own data model type
-export interface UsersTableItem {
-  firstname: string;
-  lastname: string;
-  userid: number;
-}
+export class UsersTableDataSource implements DataSource<RegisteredUsers> {
+    
+  private usersSubject = new BehaviorSubject<RegisteredUsers[]>([]);
+  private loadingSubject = new BehaviorSubject<boolean>(false);
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: UsersTableItem[] = [
-  {userid: 345, firstname: 'Hydrogen', lastname: "Pickle"},
-  {userid: 567, firstname: 'Helium', lastname: "Mayo"},
-  {userid: 395, firstname: 'Lithium', lastname: "Dill"},
-  {userid: 697, firstname: 'Beryllium', lastname: "Kecthup"},
-  {userid: 586, firstname: 'Boron', lastname: "Onion"},
-  {userid: 345, firstname: 'Carbon', lastname: "Radish"},
-  {userid: 234, firstname: 'Nitrogen', lastname: "Relish"},
-];
+  public loading$ = this.loadingSubject.asObservable();
 
-/**
- * Data source for the UsersTable view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class UsersTableDataSource extends DataSource<UsersTableItem> {
-  data: UsersTableItem[] = EXAMPLE_DATA;
-  paginator: MatPaginator | undefined;
-  sort: MatSort | undefined;
+  constructor(private regUsersService: RegUsersService) {}
 
-  constructor() {
-    super();
+  connect(collectionViewer: CollectionViewer): Observable<RegisteredUsers[]> {
+    return this.usersSubject.asObservable();
   }
 
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<UsersTableItem[]> {
-    if (this.paginator && this.sort) {
-      // Combine everything that affects the rendered data into one update
-      // stream for the data-table to consume.
-      return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
-        .pipe(map(() => {
-          return this.data/*.getPagedData(this.getSortedData([...this.data ]))*/;
-        }));
-    } else {
-      throw Error('Please set the paginator and sort on the data source before connecting.');
-    }
+  disconnect(collectionViewer: CollectionViewer): void {
+    this.usersSubject.complete();
+    this.loadingSubject.complete();
   }
 
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
-  disconnect(): void {}
+  loadUsers(sort = "id", order = "ASC", page = 0) {
 
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getPagedData(data: UsersTableItem[]): UsersTableItem[] {
-    if (this.paginator) {
-      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      return data.splice(startIndex, this.paginator.pageSize);
-    } else {
-      return data;
-    }
+    this.loadingSubject.next(true);
+
+    this.regUsersService
+      .findUsers(sort, order, page)
+      .pipe(
+        catchError(() => of([])),
+        finalize(() => this.loadingSubject.next(false))
+      )
+      .subscribe(users => this.usersSubject.next(users));
   }
-
-  /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getSortedData(data: UsersTableItem[]): UsersTableItem[] {
-    if (!this.sort || !this.sort.active || this.sort.direction === '') {
-      return data;
-    }
-
-    return data.sort((a, b) => {
-      const isAsc = this.sort?.direction === 'asc';
-      switch (this.sort?.active) {
-        case 'userid': return compare(a.userid, b.userid, isAsc);
-        case 'firstname': return compare(a.firstname, b.firstname, isAsc);
-        case 'lastname': return compare(a.lastname, b.lastname, isAsc);
-        default: return 0;
-      }
-    });
-  }
-}
-
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: string | number, b: string | number, isAsc: boolean): number {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
