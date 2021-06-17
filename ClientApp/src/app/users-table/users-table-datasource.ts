@@ -8,18 +8,18 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 export interface UsersTableItem {
   firstname: string;
   lastname: string;
-  userid: string;
+  userid: number;
 }
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: UsersTableItem[] = [
-  {userid: "DM345", firstname: 'Hydrogen', lastname: "Pickle"},
-  {userid: "BJ567", firstname: 'Helium', lastname: "Mayo"},
-  {userid: "GR395", firstname: 'Lithium', lastname: "Dill"},
-  {userid: "WE697", firstname: 'Beryllium', lastname: "Kecthup"},
-  {userid: "OP586", firstname: 'Boron', lastname: "Onion"},
-  {userid: "VN345", firstname: 'Carbon', lastname: "Radish"},
-  {userid: "RT234", firstname: 'Nitrogen', lastname: "Relish"},
+  {userid: 345, firstname: 'Hydrogen', lastname: "Pickle"},
+  {userid: 567, firstname: 'Helium', lastname: "Mayo"},
+  {userid: 395, firstname: 'Lithium', lastname: "Dill"},
+  {userid: 697, firstname: 'Beryllium', lastname: "Kecthup"},
+  {userid: 586, firstname: 'Boron', lastname: "Onion"},
+  {userid: 345, firstname: 'Carbon', lastname: "Radish"},
+  {userid: 234, firstname: 'Nitrogen', lastname: "Relish"},
 ];
 
 /**
@@ -47,7 +47,7 @@ export class UsersTableDataSource extends DataSource<UsersTableItem> {
       // stream for the data-table to consume.
       return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
         .pipe(map(() => {
-          return this.getPagedData(this.getSortedData([...this.data ]));
+          return this.data/*.getPagedData(this.getSortedData([...this.data ]))*/;
         }));
     } else {
       throw Error('Please set the paginator and sort on the data source before connecting.');

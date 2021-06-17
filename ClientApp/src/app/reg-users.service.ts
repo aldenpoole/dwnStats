@@ -9,6 +9,6 @@ export class RegUsersService {
   constructor(private http:HttpClient) { }
 
   public regUsers() {
-    return this.http.get("http://localhost:5000/api/users");
+    return this.http.get("https://localhost:5001/api/users");
   }
 }
