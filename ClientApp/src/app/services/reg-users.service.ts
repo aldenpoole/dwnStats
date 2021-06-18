@@ -2,7 +2,7 @@
 
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { RegisteredUsers } from "../registeredUsers";
+import { RegisteredUsers } from "../models/registeredUsers";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 
