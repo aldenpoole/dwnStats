@@ -10,7 +10,7 @@ namespace dwnStats.Data
 {
     public class SqlSystemsRepo : ISystemsRepo
     {
-        private readonly UserContext _context;
+        private readonly SystemsContext _context;
 
         public SqlSystemsRepo(SystemsContext context)
         {
@@ -22,7 +22,7 @@ namespace dwnStats.Data
             return _context.Systems.ToList();
         }
 
-        public User GetUserById(int id)
+        public Systems GetSystemsById(int id)
         {
            return _context.Systems.FirstOrDefault(p => p.uid == id);
         }

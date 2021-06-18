@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace dwnStats.Models
 {
-    public class System
+    public class Systems
     {
         [Key]
         public int uid {get;set;}
