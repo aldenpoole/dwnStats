@@ -4,8 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { tap } from 'rxjs/operators';
-import { RegisteredUsers } from 'src/registeredUsers';
-import { RegUsersService } from '../reg-users.service';
+import { RegisteredUsers } from '../models/registeredUsers';
+import { RegUsersService } from '../services/reg-users.service';
 import { UsersTableDataSource} from './users-table-datasource';
 
 

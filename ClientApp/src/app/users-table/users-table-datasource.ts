@@ -1,8 +1,8 @@
-import { RegisteredUsers } from 'src/registeredUsers';
+import { RegisteredUsers } from '../models/registeredUsers';
 import { catchError, finalize } from "rxjs/operators";
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
 import { Observable, BehaviorSubject, of } from "rxjs";
-import { RegUsersService } from "../reg-users.service";
+import { RegUsersService } from "../services/reg-users.service";
 
 export class UsersTableDataSource implements DataSource<RegisteredUsers> {
     
