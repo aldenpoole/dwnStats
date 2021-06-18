@@ -14,6 +14,7 @@ import { DataDownloadedGraphComponent } from './dashboard/data-downloaded-graph/
 import { UserAnalyticsComponent } from './dashboard/user-analytics/user-analytics.component';
 import { UserDownloadPiechartsComponent } from './dashboard/user-download-piecharts/user-download-piecharts.component';
 import { LatestActivityComponent } from './dashboard/latest-activity/latest-activity.component';
+import { DashboardService } from './services/dashboard.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { LatestActivityComponent } from './dashboard/latest-activity/latest-acti
     MatSortModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
