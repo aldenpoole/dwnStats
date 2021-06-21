@@ -26,7 +26,7 @@ namespace Download.Controllers
         }
         //GET api/users
         [HttpGet]
-        public ActionResult <IEnumerable<User>> GetAllCommands()
+        public ActionResult <IEnumerable<User>> GetAllUsers()
         {
             var userItems = _repository.GetAllUsers();
 

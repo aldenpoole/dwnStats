@@ -5,22 +5,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace dwnStats.Models
 {
-    public class User
+    public class Systems
     {
         [Key]
         public int uid {get;set;}
 
         [Required]
-        public string firstName {get;set;}
+        public string name {get;set;}
 
         [Required]
-        public string lastName {get;set;}
+        public float rvTotalSize {get;set;}
 
         [Required]
-        public string userName{get;set;}
+        public float lBandSize{get;set;}
 
         [Required]
-        public string password{get;set;}
+        public float sBandSize{get;set;}
         
     
     }
