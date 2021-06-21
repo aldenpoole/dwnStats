@@ -35,7 +35,22 @@ namespace dwnStats
             });
             services.AddDbContext<UserContext>(opt => opt.UseSqlServer
             (Configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<SystemsContext>(opt => opt.UseSqlServer
+            (Configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<UserSessionContext>(opt => opt.UseSqlServer
+            (Configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<DownloadsContext>(opt => opt.UseSqlServer
+            (Configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<TrajectoryContext>(opt => opt.UseSqlServer
+            (Configuration.GetConnectionString("UserConnection")));
+             services.AddDbContext<FilterContext>(opt => opt.UseSqlServer
+            (Configuration.GetConnectionString("UserConnection")));
             services.AddScoped<IUserRepo, SqlUserRepo>();
+            services.AddScoped<ISystemsRepo, SqlSystemsRepo>();
+            services.AddScoped<IUserSessionRepo, SqlUserSessionRepo>();
+            services.AddScoped<IDownloadsRepo, SqlDownloadsRepo>();
+            services.AddScoped<ITrajectoryRepo, SqlTrajectoryRepo>();
+            services.AddScoped<IFilterRepo, SqlFilterRepo>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

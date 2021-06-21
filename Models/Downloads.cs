@@ -1,26 +1,27 @@
 //Alden Poole
 //Parsons Intern Project 2021
 
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace dwnStats.Models
 {
-    public class Systems
+    public class Downloads
     {
         [Key]
         public int uid {get;set;}
 
         [Required]
-        public string name {get;set;}
+        public int sessionID {get;set;}
 
         [Required]
-        public double rvTotalSize {get;set;}
+        public int trajectoryID {get;set;}
 
         [Required]
-        public double lBandSize{get;set;}
+        public double downloadSize {get;set;}
 
         [Required]
-        public double sBandSize{get;set;}
+        public DateTime downloadTime{get;set;}
         
     
     }
