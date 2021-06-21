@@ -12,13 +12,13 @@ namespace dwnStats.Dtos
         public string name {get;set;}
 
        
-        public float rvTotalSize {get;set;}
+        public double rvTotalSize {get;set;}
 
        
-        public float lBandSize{get;set;}
+        public double lBandSize{get;set;}
 
       
-        public float sBandSize{get;set;}
+        public double sBandSize{get;set;}
 
         
     }

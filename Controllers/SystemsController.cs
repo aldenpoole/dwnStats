@@ -24,7 +24,7 @@ namespace Download.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-        //GET api/users
+        //GET api/systems
         [HttpGet]
         public ActionResult <IEnumerable<Systems>> GetAllSystems()
         {
