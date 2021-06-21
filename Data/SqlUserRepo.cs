@@ -17,15 +17,7 @@ namespace dwnStats.Data
             _context = context;
         }
 
-        public void CreateUser(User usr)
-        {
-            if(usr == null){
-                throw new ArgumentNullException(nameof(usr));
-            }
-
-            _context.Users.Add(usr);
-
-        }
+   
 
         public void DeleteUser(User usr)
         {
@@ -50,10 +42,5 @@ namespace dwnStats.Data
             return (_context.SaveChanges() >= 0);
         }
 
-        public void UpdateUser(User usr)
-        {
-            //nothing
-            
-        }
     }
 }
