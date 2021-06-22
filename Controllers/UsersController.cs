@@ -65,12 +65,12 @@ namespace Download.Controllers
             return NoContent();
         }
 
-        [HttpGet("{search}/{firstName}")]
-        public async Task<ActionResult<IEnumerable<User>>> Search(string firstName)
+        [HttpGet("{search}/{userName}")]
+        public async Task<ActionResult<IEnumerable<User>>> Search(string userName)
         {
             try
             {
-                var result = await _repository.Search(firstName);
+                var result = await _repository.Search(userName);
 
                 if (result.Any())
                 {

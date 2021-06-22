@@ -44,15 +44,15 @@ namespace dwnStats.Data
             return (_context.SaveChanges() >= 0);
         }
 
-        public async Task<IEnumerable<User>> Search(string firstName)
+        public async Task<IEnumerable<User>> Search(string userName)
         {
         IQueryable<User> query = _context.Users;
             
-        //if (firstName !=null)
-       // {
-            query = query.Where(e => e.firstName.Contains(firstName)
-                        || e.firstName.Contains(firstName));
-        //}
+        if (userName !=null)
+        {
+            query = query.Where(e => e.userName.Contains(userName)
+                        || e.userName.Contains(userName));
+        }
 
        
 

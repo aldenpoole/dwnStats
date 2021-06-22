@@ -16,6 +16,6 @@ namespace dwnStats.Data
     
         void DeleteUser(User usr);
 
-        Task<IEnumerable<User>> Search(string firstName);
+        Task<IEnumerable<User>> Search(string userName);
     }
 }
