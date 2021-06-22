@@ -87,6 +87,26 @@ namespace Download.Controllers
               
         }
 
+        /*[HttpGet("GetDownloadsByUser/{uid}/{userID}")]
+        public ActionResult GetDownloadsByUser(int uid, int userID)
+        {
+            
+               
+                
+                var result =  _repository.DownloadsByUser(uid, userID);
+                
+                 if(result != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(result));
+            }
+
+                else{
+                    return NoContent();
+                }
+
+              
+        }*/
+
         
     }
 }
