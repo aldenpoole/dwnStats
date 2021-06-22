@@ -1,5 +1,5 @@
-import { AfterViewInit, ViewChild } from '@angular/core';
-import { Component, OnInit  } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import { Component, OnInit, AfterViewInit,ViewChild  } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -7,8 +7,6 @@ import { tap } from 'rxjs/operators';
 import { RegisteredUsers } from '../models/registeredUsers';
 import { RegUsersService } from '../services/reg-users.service';
 import { UsersTableDataSource} from './users-table-datasource';
-
-
 
 @Component({
   selector: 'app-users-table',
