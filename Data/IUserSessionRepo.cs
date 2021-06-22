@@ -15,6 +15,7 @@ namespace dwnStats.Data
         IEnumerable<UserSession> GetAllUserSessions();
         UserSession GetUserSessionsById(int uid);
         IEnumerable<UserSession> SearchByUserID(int userID);
+         IEnumerable<UserSession> SearchByDateTime(DateTime dateTime);
 
 
     }

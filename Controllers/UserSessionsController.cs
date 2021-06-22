@@ -67,6 +67,26 @@ namespace Download.Controllers
               
         }
 
+         [HttpGet("GetByDateTime/{yyyy}/{mm}/{dd}/{hh}/{min}/{ss}")]
+        public ActionResult GetByDateTime(int yyyy, int mm, int dd, int hh, int min, int ss)
+        {
+            
+               
+                DateTime dateTime = new DateTime(yyyy,mm,dd,hh,min,ss);
+                var result =  _repository.SearchByDateTime(dateTime);
+                
+                 if(result != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(result));
+            }
+
+                else{
+                    return NoContent();
+                }
+
+              
+        }
+
         
     }
 }
