@@ -43,6 +43,15 @@ namespace dwnStats.Data
       
         }
 
+        public IEnumerable<UserSession> SearchByDateTime(DateTime dateTime)
+        {
+            IEnumerable<UserSession> sessions = from tr in _context.UserSessions
+                   where tr.timeStart == dateTime
+                   select tr;
+            return sessions.ToList();
+      
+        }
+
        
 
     }
