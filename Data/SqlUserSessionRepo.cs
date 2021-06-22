@@ -34,35 +34,16 @@ namespace dwnStats.Data
             return (_context.SaveChanges() >= 0);
         }
 
-        public async Task<IEnumerable<UserSession>> Search(int userID)
+        public IEnumerable<UserSession> SearchByUserID(int userID)
         {
-        IQueryable<UserSession> query = _context.UserSessions;
-            
-        if (userID !=null)
-        {
-            query = query.Where(e => e.userID.Equals(userID)
-                        || e.userID.Equals(userID));
+            IEnumerable<UserSession> sessions = from tr in _context.UserSessions
+                   where tr.userID == userID
+                   select tr;
+            return sessions.ToList();
+      
         }
 
        
-
-        return await query.ToListAsync();
-        }
-
-        public async Task<IEnumerable<UserSession>> Search(DateTime timeStart)
-        {
-        IQueryable<UserSession> query = _context.UserSessions;
-            
-        if (timeStart !=null)
-        {
-            query = query.Where(e => e.userID.Equals(timeStart)
-                        || e.userID.Equals(timeStart));
-        }
-
-       
-
-        return await query.ToListAsync();
-        }
 
     }
 }

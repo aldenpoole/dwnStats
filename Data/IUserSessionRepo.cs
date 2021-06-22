@@ -14,9 +14,8 @@ namespace dwnStats.Data
         bool SaveChanges();
         IEnumerable<UserSession> GetAllUserSessions();
         UserSession GetUserSessionsById(int uid);
+        IEnumerable<UserSession> SearchByUserID(int userID);
 
-        Task<IEnumerable<UserSession>> Search(int userID);
-        Task<IEnumerable<UserSession>> Search(DateTime timeStart);
 
     }
 }
