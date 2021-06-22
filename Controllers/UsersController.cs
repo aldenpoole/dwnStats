@@ -37,7 +37,7 @@ namespace Download.Controllers
             return Ok(_mapper.Map<IEnumerable<UserReadDto>>(userItems));
         }
         //GET api/users/{id}
-        [HttpGet("{uid}", Name="GetUserById")]
+        [HttpGet("GetByUserID/{uid}", Name="GetUserById")]
         public ActionResult <UserReadDto> GetUserById(int uid)
         {
             var userItem = _repository.GetUserById(uid);
@@ -48,43 +48,47 @@ namespace Download.Controllers
             return NotFound();
         }
 
-        
 
-        //DELETE api/users/{uid}
-        [HttpDelete("{uid}")]
-        public ActionResult UserDelete(int uid)
+        [HttpGet("GetByFirstName/{firstName}")]
+        public ActionResult GetByFirstName(string firstName)
         {
-            var userModelFromRepo = _repository.GetUserById(uid);
-            if(userModelFromRepo == null){
-                return NotFound();
-            }
             
-            _repository.DeleteUser(userModelFromRepo);
-            _repository.SaveChanges();
-
-            return NoContent();
-        }
-
-        [HttpGet("{search}/{userName}")]
-        public async Task<ActionResult<IEnumerable<User>>> Search(string userName)
-        {
-            try
+             
+                var result =  _repository.SearchFirst(firstName);
+                
+                 if(result != null)
             {
-                var result = await _repository.Search(userName);
+                return Ok(_mapper.Map<IEnumerable<UserReadDto>>(result));
+            }
 
-                if (result.Any())
-                {
-                    return Ok(result);
+                else{
+                    return NoContent();
                 }
 
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
-            }
+              
         }
+
+        [HttpGet("GetByUsername/{userName}")]
+        public ActionResult GetByUserName(string userName)
+        {
+            
+               var result =  _repository.SearchUser(userName);
+                
+                 if(result != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<UserReadDto>>(result));
+            }
+
+                
+                else{
+                    return NoContent();
+                }
+
+              
+        }
+        
+
+    
     }
 
 }

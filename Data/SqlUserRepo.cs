@@ -34,7 +34,7 @@ namespace dwnStats.Data
             return _context.Users.ToList();
         }
 
-        public User GetUserById(int id)
+       public User GetUserById(int id)
         {
            return _context.Users.FirstOrDefault(p => p.uid == id);
         }
@@ -44,19 +44,21 @@ namespace dwnStats.Data
             return (_context.SaveChanges() >= 0);
         }
 
-        public async Task<IEnumerable<User>> Search(string userName)
+        public IEnumerable<User> SearchUser(string userName)
         {
-        IQueryable<User> query = _context.Users;
-            
-        if (userName !=null)
-        {
-            query = query.Where(e => e.userName.Contains(userName)
-                        || e.userName.Contains(userName));
+            IEnumerable<User> users = from tr in _context.Users
+                   where tr.userName == userName
+                   select tr;
+            return users.ToList();
+      
         }
-
+        public IEnumerable<User> SearchFirst(string firstName)
+        {
+            IEnumerable<User> users = from tr in _context.Users
+                   where tr.firstName == firstName
+                   select tr;
+            return users.ToList();
        
-
-        return await query.ToListAsync();
         }
 
     }
