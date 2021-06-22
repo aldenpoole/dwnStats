@@ -35,7 +35,7 @@ namespace dwnStats.Data
         }
 
         public async Task<IEnumerable<UserSession>> Search(int userID)
-    {
+        {
         IQueryable<UserSession> query = _context.UserSessions;
             
         if (userID !=null)
@@ -47,7 +47,22 @@ namespace dwnStats.Data
        
 
         return await query.ToListAsync();
-    }
+        }
+
+        public async Task<IEnumerable<UserSession>> Search(DateTime timeStart)
+        {
+        IQueryable<UserSession> query = _context.UserSessions;
+            
+        if (timeStart !=null)
+        {
+            query = query.Where(e => e.userID.Equals(timeStart)
+                        || e.userID.Equals(timeStart));
+        }
+
+       
+
+        return await query.ToListAsync();
+        }
 
     }
 }

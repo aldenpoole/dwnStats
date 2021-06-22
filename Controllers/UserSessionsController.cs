@@ -67,7 +67,28 @@ namespace Download.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving data from the database");
             }
-    }
+        }
+
+        [HttpGet("{search}/{timeStart}")]
+        public async Task<ActionResult<IEnumerable<UserSession>>> Search(DateTime timeStart)
+        {
+            try
+            {
+                var result = await _repository.Search(timeStart);
+
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
 
         
     }

@@ -8,6 +8,10 @@ using dwnStats.Data;
 using AutoMapper;
 using dwnStats.Dtos;
 using Microsoft.AspNetCore.JsonPatch;
+using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace Download.Controllers
 {
@@ -59,6 +63,27 @@ namespace Download.Controllers
             _repository.SaveChanges();
 
             return NoContent();
+        }
+
+        [HttpGet("{search}/{firstName}")]
+        public async Task<ActionResult<IEnumerable<User>>> Search(string firstName)
+        {
+            try
+            {
+                var result = await _repository.Search(firstName);
+
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
         }
     }
 

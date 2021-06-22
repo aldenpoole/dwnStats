@@ -2,9 +2,11 @@
 //Parsons Intern Project 2021
 
 using dwnStats.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace dwnStats.Data
 {
@@ -40,6 +42,21 @@ namespace dwnStats.Data
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public async Task<IEnumerable<User>> Search(string firstName)
+        {
+        IQueryable<User> query = _context.Users;
+            
+        //if (firstName !=null)
+       // {
+            query = query.Where(e => e.firstName.Contains(firstName)
+                        || e.firstName.Contains(firstName));
+        //}
+
+       
+
+        return await query.ToListAsync();
         }
 
     }
