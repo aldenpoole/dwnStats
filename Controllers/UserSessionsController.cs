@@ -48,46 +48,23 @@ namespace Download.Controllers
             return NotFound();
         }
 
-        [HttpGet("{search}/{userID}")]
-        public async Task<ActionResult<IEnumerable<UserSession>>> Search(int userID)
+        [HttpGet("GetByUserID/{userID}")]
+        public ActionResult GetByUserID(int userID)
         {
-            try
+            
+             
+                var result =  _repository.SearchByUserID(userID);
+                
+                 if(result != null)
             {
-                var result = await _repository.Search(userID);
+                return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(result));
+            }
 
-                if (result.Any())
-                {
-                    return Ok(result);
+                else{
+                    return NoContent();
                 }
 
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
-            }
-        }
-
-        [HttpGet("{search}/{timeStart}")]
-        public async Task<ActionResult<IEnumerable<UserSession>>> Search(DateTime timeStart)
-        {
-            try
-            {
-                var result = await _repository.Search(timeStart);
-
-                if (result.Any())
-                {
-                    return Ok(result);
-                }
-
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error retrieving data from the database");
-            }
+              
         }
 
         
