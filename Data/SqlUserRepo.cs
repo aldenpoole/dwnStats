@@ -61,5 +61,14 @@ namespace dwnStats.Data
        
         }
 
+         public IEnumerable<User> SearchFullName(string firstName, string lastName)
+        {
+            IEnumerable<User> users = from tr in _context.Users
+                   where tr.firstName == firstName && tr.lastName == lastName
+                   select tr;
+            return users.ToList();
+       
+        }
+
     }
 }

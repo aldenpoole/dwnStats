@@ -86,6 +86,22 @@ namespace Download.Controllers
 
               
         }
+
+        [HttpGet("GetByFullName")] // <--
+        public ActionResult GetByFullName([FromQuery]string firstName, [FromQuery]string lastName)
+            {       
+                var result =  _repository.SearchFullName(firstName, lastName);
+                
+                 if(result != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<UserReadDto>>(result));
+            }
+
+                
+                else{
+                    return NoContent();
+                }
+            }
         
 
     
