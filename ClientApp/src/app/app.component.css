@@ -1,6 +1,6 @@
 :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
+    font-size: 16px;
     color: #333;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -33,6 +33,18 @@ h6 {
     font-weight: 600;
 }
 
+.navbar {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 60px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #2f8be7;
+}
+
 .add-form {
     display: inline-block;
     position: absolute;
@@ -52,4 +64,31 @@ h6 {
     position: absolute;
     margin-top: 100px;
     margin-left: 800px;
+}
+
+#adminIcon {
+    margin-left: 13px;
+    margin-right: 10px;
+}
+
+#houseIcon {
+    position: absolute;
+    top: 10px;
+    margin-left: 10px;
+}
+
+#userListIcon {
+    position: absolute;
+    top: 60px;
+    margin-left: 10px; 
+}
+
+#houseIcon:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+#userListIcon:hover {
+    opacity: 0.3;
+    cursor: pointer;
 }
