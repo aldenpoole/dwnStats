@@ -16,6 +16,7 @@ import { UserDownloadPiechartsComponent } from './dashboard/user-download-piecha
 import { LatestActivityComponent } from './dashboard/latest-activity/latest-activity.component';
 import { DashboardService } from './services/dashboard.service';
 import { UsersComponent } from './users/users.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { UsersComponent } from './users/users.component';
     UserAnalyticsComponent,
     UserDownloadPiechartsComponent,
     LatestActivityComponent,
-    UsersComponent
+    UsersComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
