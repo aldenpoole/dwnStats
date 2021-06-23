@@ -13,7 +13,6 @@ namespace dwnStats.Data
             {
                 
             }
-
             public DbSet <Downloads> Downloads { get; set; }
     }
 }

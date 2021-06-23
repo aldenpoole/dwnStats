@@ -9,20 +9,13 @@ namespace dwnStats.Models
     {
         [Key]
         public int uid {get;set;}
-
         [Required]
         public string name {get;set;}
-
         [Required]
         public double rvTotalSize {get;set;}
-
         [Required]
         public double lBandSize{get;set;}
-
         [Required]
         public double sBandSize{get;set;}
-        
-    
     }
-
 }

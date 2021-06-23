@@ -9,11 +9,9 @@ namespace dwnStats.Data
 {
     public class FilterContext : DbContext
     {
-            public FilterContext(DbContextOptions<FilterContext> opt) : base(opt)
-            {
-                
-            }
-
-            public DbSet <Filter> Filters { get; set; }
+        public FilterContext(DbContextOptions<FilterContext> opt) : base(opt)
+        {   
+        }
+        public DbSet <Filter> Filters { get; set; }
     }
 }

@@ -9,11 +9,9 @@ namespace dwnStats.Data
 {
     public class SystemsContext : DbContext
     {
-            public SystemsContext(DbContextOptions<SystemsContext> opt) : base(opt)
-            {
-                
-            }
-
-            public DbSet <Systems> Systems { get; set; }
+        public SystemsContext(DbContextOptions<SystemsContext> opt) : base(opt)
+        {    
+        }
+        public DbSet <Systems> Systems { get; set; }
     }
 }

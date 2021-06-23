@@ -8,7 +8,6 @@ namespace dwnStats.Data
 {
     public interface IFilterRepo
     {
-        
         bool SaveChanges();
         IEnumerable<Filter> GetAllFilters();
         Filter GetFiltersById(int uid);

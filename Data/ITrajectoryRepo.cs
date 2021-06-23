@@ -8,7 +8,6 @@ namespace dwnStats.Data
 {
     public interface ITrajectoryRepo
     {
-        
         bool SaveChanges();
         IEnumerable<Trajectory> GetAllTrajectories();
         Trajectory GetTrajectoriesById(int uid);

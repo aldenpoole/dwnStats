@@ -28,7 +28,7 @@ namespace Download.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-        //GET api/users
+        
         [HttpGet]
         public ActionResult <IEnumerable<User>> GetAllUsers()
         {
@@ -36,7 +36,7 @@ namespace Download.Controllers
 
             return Ok(_mapper.Map<IEnumerable<UserReadDto>>(userItems));
         }
-        //GET api/users/{id}
+        
         [HttpGet("GetByUserID/{uid}", Name="GetUserById")]
         public ActionResult <UserReadDto> GetUserById(int uid)
         {
@@ -52,20 +52,15 @@ namespace Download.Controllers
         [HttpGet("GetByFirstName/{firstName}")]
         public ActionResult GetByFirstName(string firstName)
         {
-            
-             
                 var result =  _repository.SearchFirst(firstName);
-                
-                 if(result != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<UserReadDto>>(result));
-            }
-
-                else{
-                    return NoContent();
+                if(result != null)
+                {
+                    return Ok(_mapper.Map<IEnumerable<UserReadDto>>(result));
                 }
-
-              
+                else
+                {
+                    return NoContent();
+                }    
         }
 
         [HttpGet("GetByUsername/{userName}")]
@@ -73,18 +68,14 @@ namespace Download.Controllers
         {
             
                var result =  _repository.SearchUser(userName);
-                
-                 if(result != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<UserReadDto>>(result));
-            }
-
-                
-                else{
+                if(result != null)
+                {
+                    return Ok(_mapper.Map<IEnumerable<UserReadDto>>(result));
+                }
+                else
+                {
                     return NoContent();
                 }
-
-              
         }
 
         [HttpGet("GetByFullName")] // <--
@@ -96,15 +87,10 @@ namespace Download.Controllers
             {
                 return Ok(_mapper.Map<IEnumerable<UserReadDto>>(result));
             }
-
-                
                 else{
                     return NoContent();
                 }
             }
-        
-
-    
     }
 
 }

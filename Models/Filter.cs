@@ -10,19 +10,12 @@ namespace dwnStats.Models
     {
         [Key]
         public int uid {get;set;}
-
         [Required]
         public string launchCountry{get;set;}
-
         [Required]
         public string launchLocation{get;set;}
-        
-
         [Required]
         public DateTime launchTime {get;set;}
-
-       
-    
     }
 
 }

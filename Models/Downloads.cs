@@ -10,20 +10,13 @@ namespace dwnStats.Models
     {
         [Key]
         public int uid {get;set;}
-
         [Required]
         public int sessionID {get;set;}
-
         [Required]
         public int trajectoryID {get;set;}
-
         [Required]
         public double downloadSize {get;set;}
-
         [Required]
         public DateTime downloadTime{get;set;}
-        
-    
     }
-
 }

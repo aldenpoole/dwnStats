@@ -11,26 +11,21 @@ namespace dwnStats.Data
     public class SqlSystemsRepo : ISystemsRepo
     {
         private readonly SystemsContext _context;
-
         public SqlSystemsRepo(SystemsContext context)
         {
             _context = context;
         }
-
         public IEnumerable<Systems> GetAllSystems()
         {
             return _context.Systems.ToList();
         }
-
         public Systems GetSystemsById(int id)
         {
            return _context.Systems.FirstOrDefault(p => p.uid == id);
         }
-
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
         }
-
     }
 }

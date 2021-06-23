@@ -10,14 +10,10 @@ namespace dwnStats.Data
 {
     public interface IUserSessionRepo
     {
-        
         bool SaveChanges();
         IEnumerable<UserSession> GetAllUserSessions();
         UserSession GetUserSessionsById(int uid);
         IEnumerable<UserSession> SearchByUserID(int userID);
         IEnumerable<UserSession> SearchByDateTime(DateTime dateTime);
-        //IEnumerable<DownloadByUser> DownloadsByUser(int uid, int userID);
-
-
     }
 }

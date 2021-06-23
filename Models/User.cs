@@ -9,20 +9,13 @@ namespace dwnStats.Models
     {
         [Key]
         public int uid {get;set;}
-
         [Required]
         public string firstName {get;set;}
-
         [Required]
         public string lastName {get;set;}
-
         [Required]
         public string userName{get;set;}
-
         [Required]
         public string password{get;set;}
-        
-    
     }
-
 }

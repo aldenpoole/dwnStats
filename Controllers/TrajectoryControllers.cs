@@ -24,7 +24,7 @@ namespace Download.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-        //GET api/trajectories
+        
         [HttpGet]
         public ActionResult <IEnumerable<Trajectory>> GetAllTrajectories()
         {
@@ -32,7 +32,7 @@ namespace Download.Controllers
 
             return Ok(_mapper.Map<IEnumerable<TrajectoryReadDto>>(trajectoryItems));
         }
-        //GET api/trajectories/{id}
+
         [HttpGet("{uid}", Name="GetTrajectoriesById")]
         public ActionResult <TrajectoryReadDto> GetTrajectoriesById(int uid)
         {

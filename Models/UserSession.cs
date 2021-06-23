@@ -10,23 +10,15 @@ namespace dwnStats.Models
     {
         [Key]
         public int uid {get;set;}
-
         [Required]
         public int filterID {get;set;}
-
         [Required]
         public int userID {get;set;}
-
         [Required]
         public DateTime  timeStart {get;set;}
-
         [Required]
         public DateTime  timeEnd {get;set;}
-        
         [Required]
         public string ipAddress {get;set;}
-        
-    
     }
-
 }

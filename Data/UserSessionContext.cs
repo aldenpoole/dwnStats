@@ -9,11 +9,9 @@ namespace dwnStats.Data
 {
     public class UserSessionContext : DbContext
     {
-            public UserSessionContext(DbContextOptions<UserSessionContext> opt) : base(opt)
-            {
-                
-            }
-
-            public DbSet <UserSession> UserSessions { get; set; }
+        public UserSessionContext(DbContextOptions<UserSessionContext> opt) : base(opt)
+        {    
+        }
+        public DbSet <UserSession> UserSessions { get; set; }
     }
 }

@@ -28,7 +28,6 @@ namespace Download.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-        //GET api/usersessions
         [HttpGet]
         public ActionResult <IEnumerable<UserSession>> GetAllUserSessions()
         {
@@ -36,7 +35,6 @@ namespace Download.Controllers
 
             return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(userSessionItems));
         }
-        //GET api/usersessions/{id}
         [HttpGet("{uid}", Name="GetUserSessionsById")]
         public ActionResult <UserSessionReadDto> GetUserSessionsById(int uid)
         {
@@ -51,62 +49,31 @@ namespace Download.Controllers
         [HttpGet("GetByUserID/{userID}")]
         public ActionResult GetByUserID(int userID)
         {
-            
-             
                 var result =  _repository.SearchByUserID(userID);
-                
-                 if(result != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(result));
-            }
-
-                else{
-                    return NoContent();
+                if(result != null)
+                {
+                    return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(result));
                 }
-
-              
+                else
+                {
+                    return NoContent();
+                }   
         }
 
          [HttpGet("GetByDateTime/{yyyy}/{mm}/{dd}/{hh}/{min}/{ss}")]
         public ActionResult GetByDateTime(int yyyy, int mm, int dd, int hh, int min, int ss)
         {
-            
-               
                 DateTime dateTime = new DateTime(yyyy,mm,dd,hh,min,ss);
                 var result =  _repository.SearchByDateTime(dateTime);
-                
-                 if(result != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(result));
-            }
-
-                else{
-                    return NoContent();
+                if(result != null)
+                {
+                    return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(result));
                 }
 
-              
+                else
+                {
+                    return NoContent();
+                }
         }
-
-        /*[HttpGet("GetDownloadsByUser/{uid}/{userID}")]
-        public ActionResult GetDownloadsByUser(int uid, int userID)
-        {
-            
-               
-                
-                var result =  _repository.DownloadsByUser(uid, userID);
-                
-                 if(result != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<UserSessionReadDto>>(result));
-            }
-
-                else{
-                    return NoContent();
-                }
-
-              
-        }*/
-
-        
     }
 }

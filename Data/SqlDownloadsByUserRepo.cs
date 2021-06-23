@@ -13,7 +13,6 @@ namespace dwnStats.Data
         private readonly DownloadsContext _context;
         private readonly UserContext _userContext;
         private readonly UserSessionContext _sessionContext;
-
         public SqlDownloadsByUserRepo(DownloadsContext context, UserContext userContext, UserSessionContext sessionContext)
         {
             _context = context;
@@ -21,9 +20,7 @@ namespace dwnStats.Data
             _sessionContext = sessionContext;
         }
 
-        
-
-          public IEnumerable<DownloadByUser> SearchDownloadsByUserID(int userID)
+        public IEnumerable<DownloadByUser> SearchDownloadsByUserID(int userID)
         {
             var ses = _sessionContext.UserSessions.ToList();
             var usr = _userContext.Users.ToList();
@@ -37,16 +34,13 @@ namespace dwnStats.Data
                 join down in dwn
                 on session.uid equals down.sessionID
                 select new DownloadByUser
-                    {
-                        
+                    { 
                         downloadSize = down.downloadSize,
                         trajectoryID = down.trajectoryID,
                         downloadTime = down.downloadTime
                     };
             
             return obj;
-      
         }
-
     }
 }

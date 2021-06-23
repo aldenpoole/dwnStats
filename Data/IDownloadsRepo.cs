@@ -9,11 +9,8 @@ namespace dwnStats.Data
     public interface IDownloadsRepo
     {
         bool SaveChanges();
-
         IEnumerable<Downloads> GetAllDownloads();
         Downloads GetDownloadsById(int uid);
-
         IEnumerable<Downloads> SearchBySessionID(int sessionID);
-      
     }
 }

@@ -24,7 +24,7 @@ namespace Download.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-        //GET api/downloads
+        
         [HttpGet]
         public ActionResult <IEnumerable<Downloads>> GetAllDownloads()
         {
@@ -32,7 +32,7 @@ namespace Download.Controllers
 
             return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(downloadItems));
         }
-        //GET api/downloads/{id}
+      
         [HttpGet("{uid}", Name="GetUserDownloadsById")]
         public ActionResult <DownloadReadDto> GetDownloadsById(int uid)
         {
@@ -43,18 +43,16 @@ namespace Download.Controllers
             }
             return NotFound();
         }
-         [HttpGet("GetDownloadBySessionID/{sessionID}")] // <--
+         [HttpGet("GetDownloadBySessionID/{sessionID}")]
         public ActionResult GetDownloadBySessionID(int sessionID)
             {       
                 var result =  _repository.SearchBySessionID(sessionID);
-                
-                 if(result != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(result));
-            }
-
-                
-                else{
+                if(result != null)
+                {
+                    return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(result));
+                }
+                else
+                {
                     return NoContent();
                 }
             }

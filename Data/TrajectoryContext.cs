@@ -9,11 +9,9 @@ namespace dwnStats.Data
 {
     public class TrajectoryContext : DbContext
     {
-            public TrajectoryContext(DbContextOptions<TrajectoryContext> opt) : base(opt)
-            {
-                
-            }
-
-            public DbSet <Trajectory> Trajectories { get; set; }
+        public TrajectoryContext(DbContextOptions<TrajectoryContext> opt) : base(opt)
+        { 
+        }
+        public DbSet <Trajectory> Trajectories { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace Download.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-        //GET api/systems
+        
         [HttpGet]
         public ActionResult <IEnumerable<Systems>> GetAllSystems()
         {
@@ -32,7 +32,7 @@ namespace Download.Controllers
 
             return Ok(_mapper.Map<IEnumerable<SystemsReadDto>>(systemsItems));
         }
-        //GET api/users/{id}
+        
         [HttpGet("{uid}", Name="GetSystemsById")]
         public ActionResult <SystemsReadDto> GetSystemsById(int uid)
         {
