@@ -25,7 +25,6 @@ namespace dwnStats.Data
 
           public IEnumerable<DownloadByUser> SearchDownloadsByUserID(int userID)
         {
-            //still returning inaccurate information! returns global downloads with a userid, not the user's specific downloads
             var ses = _sessionContext.UserSessions.ToList();
             var usr = _userContext.Users.ToList();
             var dwn = _context.Downloads.ToList();

@@ -30,15 +30,13 @@ namespace Download.Controllers
         public ActionResult GetDownloadByUserID(int userID)
             {       
                 var result =  _repository.SearchDownloadsByUserID(userID);
-                
-                 if(result != null)
-            {
-                Console.WriteLine("object wasnt null");
-                return Ok(result);
-            }
-
-                
-                else{
+                if(result != null)
+                {
+                    Console.WriteLine("object wasnt null");
+                    return Ok(result);
+                }        
+                else
+                {
                      return StatusCode(204);
                 }
             }
