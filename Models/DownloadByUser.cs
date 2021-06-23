@@ -8,15 +8,10 @@ namespace dwnStats.Models
 {
     public class DownloadByUser
     {
-        [Key]
         public int userID{get;set;}
-
-        [Key]
+        public string userName{get;set;}
         public int trajectoryID{get;set;}
 
-
-
-        [Required]
         public double downloadSize {get;set;}
 
         

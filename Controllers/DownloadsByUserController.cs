@@ -12,49 +12,27 @@ using Microsoft.AspNetCore.JsonPatch;
 namespace Download.Controllers
 {
     //api commands
-    [Route("api/downloads")]
+    [Route("api/downloadsbyuser")]
     [ApiController]
     public class DownloadsByUserController : ControllerBase
     {
-        private readonly IDownloadsRepo _repository;
-        private readonly IUserSessionRepo _sessionRepo;
-        private readonly IUserRepo _userRepo;
+        private readonly IDownloadsByUserRepo _repository;
         private readonly IMapper _mapper;
 
-        public DownloadsByUserController(IDownloadsRepo repository, IUserRepo userRepo, IUserSessionRepo sessionRepo, IMapper mapper)
+        public DownloadsByUserController(IDownloadsByUserRepo repository, IMapper mapper)
         {
             _repository = repository;
-            _userRepo = userRepo;
-            _sessionRepo = sessionRepo;
             _mapper = mapper;
         }
-        //GET api/downloads
-        [HttpGet]
-        public ActionResult <IEnumerable<Downloads>> GetAllDownloads()
-        {
-            var downloadItems = _repository.GetAllDownloads();
-
-            return Ok(downloadItems);
-        }
-        //GET api/downloads/{id}
-        [HttpGet("{uid}", Name="GetUserDownloadsById")]
-        public ActionResult <DownloadReadDto> GetDownloadsById(int uid)
-        {
-            var downloadsItem = _repository.GetDownloadsById(uid);
-            if(downloadsItem != null)
-            {
-                return Ok(_mapper.Map<DownloadReadDto>(downloadsItem));
-            }
-            return NotFound();
-        }
-         [HttpGet("GetDownloadBySessionID/{sessionID}")] // <--
-        public ActionResult GetDownloadBySessionID(int sessionID)
+       
+        [HttpGet("GetDownloadByUserID/{userID}")] // <--
+        public ActionResult GetDownloadByUserID(int userID)
             {       
-                var result =  _repository.SearchBySessionID(sessionID);
+                var result =  _repository.SearchDownloadsByUserID(userID);
                 
                  if(result != null)
             {
-                return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(result));
+                return Ok(result);
             }
 
                 
