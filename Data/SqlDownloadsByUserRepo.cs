@@ -26,23 +26,23 @@ namespace dwnStats.Data
           public IEnumerable<DownloadByUser> SearchDownloadsByUserID(int userID)
         {
             
-        var ses = _sessionContext.UserSessions.ToList();
-        var usr = _userContext.Users.ToList();
-        var dwn = _context.Downloads.ToList();
+            var ses = _sessionContext.UserSessions.ToList();
+            var usr = _userContext.Users.ToList();
+            var dwn = _context.Downloads.ToList();
 
-        var obj =  
-            from session in ses
-            join user in usr
-            on session.userID equals userID
-            join down in dwn
-            on session.uid equals down.sessionID
-            select new DownloadByUser
-            {
-                userID = user.uid,
-                userName = user.userName,
-                downloadSize = down.downloadSize,
-                trajectoryID = down.trajectoryID
-            };
+            var obj =  
+                from session in ses
+                join user in usr
+                on session.userID equals userID
+                join down in dwn
+                on session.uid equals down.sessionID
+                select new DownloadByUser
+                    {
+                        userID = user.uid,
+                        userName = user.userName,
+                        downloadSize = down.downloadSize,
+                        trajectoryID = down.trajectoryID
+                    };
             
             return obj;
       
