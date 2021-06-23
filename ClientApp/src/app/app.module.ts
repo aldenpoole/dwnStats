@@ -17,6 +17,7 @@ import { LatestActivityComponent } from './dashboard/latest-activity/latest-acti
 import { DashboardService } from './services/dashboard.service';
 import { UsersComponent } from './users/users.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
+import { NavBarComponent } from './dashboard/nav-bar/nav-bar.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
     UserDownloadPiechartsComponent,
     LatestActivityComponent,
     UsersComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
     MatSortModule,
     HttpClientModule
   ],
-  providers: [DashboardService, UsersComponent],
+  providers: [Title, DashboardService, UsersComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
