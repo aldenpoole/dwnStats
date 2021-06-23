@@ -25,23 +25,11 @@ namespace dwnStats.Data
 
           public IEnumerable<DownloadByUser> SearchDownloadsByUserID(int userID)
         {
-            //IQueryable<UserSession> sessions = from ses in _sessionContext.UserSessions
-                 //  where ses.userID == userID
-                  // select ses;
-
-            /*List<UserSession> q1 = _sessionContext.UserSessions.Where(ses => ses.userID == userID).ToList();
-            int i =0;
-            IQueryable<Downloads> q2;
-            for(i = 0; i < q1.Count; i++){
-                q2.Prepend(_context.Downloads.Where(dn => dn.sessionID == q1[i].uid));
-            }*/
-        
-       // IQueryable<User> users = from sessions in _sessionContext.UserSessions.Where(p => p.uid == userID)
-           // select new {sessions.userID};
+            
         var ses = _sessionContext.UserSessions.ToList();
         var usr = _userContext.Users.ToList();
         var dwn = _context.Downloads.ToList();
-        
+
         var obj =  
             from session in ses
             join user in usr
@@ -50,8 +38,10 @@ namespace dwnStats.Data
             on session.uid equals down.sessionID
             select new DownloadByUser
             {
-                downloads = down,
-                users = user
+                userID = user.uid,
+                userName = user.userName,
+                downloadSize = down.downloadSize,
+                trajectoryID = down.trajectoryID
             };
             
             return obj;
