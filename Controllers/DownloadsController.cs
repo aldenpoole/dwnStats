@@ -43,5 +43,21 @@ namespace Download.Controllers
             }
             return NotFound();
         }
+         [HttpGet("GetDownloadBySessionID/{sessionID}")] // <--
+        public ActionResult GetDownloadBySessionID(int sessionID)
+            {       
+                var result =  _repository.SearchBySessionID(sessionID);
+                
+                 if(result != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(result));
+            }
+
+                
+                else{
+                    return NoContent();
+                }
+            }
+        
     }
 }

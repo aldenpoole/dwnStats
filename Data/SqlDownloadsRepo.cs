@@ -32,5 +32,14 @@ namespace dwnStats.Data
             return (_context.SaveChanges() >= 0);
         }
 
+          public IEnumerable<Downloads> SearchBySessionID(int sessionID)
+        {
+            IEnumerable<Downloads> downloads = from tr in _context.Downloads
+                   where tr.sessionID== sessionID
+                   select tr;
+            return downloads.ToList();
+      
+        }
+
     }
 }
