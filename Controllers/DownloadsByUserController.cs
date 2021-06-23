@@ -26,7 +26,7 @@ namespace Download.Controllers
             _mapper = mapper;
         }
        
-        [HttpGet("GetDownloadByUserID/{userID}")] // <--
+        [HttpGet("{userID}")] // <--
         public ActionResult GetDownloadByUserID(int userID)
             {       
                 var result =  _repository.SearchDownloadsByUserID(userID);
@@ -39,8 +39,7 @@ namespace Download.Controllers
 
                 
                 else{
-                    Console.WriteLine("object was null");
-                    return NoContent();
+                     return StatusCode(204);
                 }
             }
         

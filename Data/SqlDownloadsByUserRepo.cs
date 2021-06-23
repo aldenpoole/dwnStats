@@ -39,10 +39,10 @@ namespace dwnStats.Data
                 on session.uid equals down.sessionID
                 select new DownloadByUser
                     {
-                        userID = user.uid,
-                        userName = user.userName,
+                        
                         downloadSize = down.downloadSize,
-                        trajectoryID = down.trajectoryID
+                        trajectoryID = down.trajectoryID,
+                        downloadTime = down.downloadTime
                     };
             
             return obj;
