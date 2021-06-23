@@ -51,6 +51,7 @@ namespace dwnStats
             services.AddScoped<IDownloadsRepo, SqlDownloadsRepo>();
             services.AddScoped<ITrajectoryRepo, SqlTrajectoryRepo>();
             services.AddScoped<IFilterRepo, SqlFilterRepo>();
+            services.AddScoped<IDownloadsByUserRepo, SqlDownloadsByUserRepo>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

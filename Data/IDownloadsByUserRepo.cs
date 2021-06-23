@@ -9,7 +9,7 @@ namespace dwnStats.Data
 {
     public interface IDownloadsByUserRepo
     {
-        IQueryable SearchDownloadsByUserID(int userID);
+        IQueryable<DownloadByUser> SearchDownloadsByUserID(int userID);
       
     }
 }

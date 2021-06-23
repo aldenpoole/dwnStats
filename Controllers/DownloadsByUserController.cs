@@ -8,6 +8,7 @@ using dwnStats.Data;
 using AutoMapper;
 using dwnStats.Dtos;
 using Microsoft.AspNetCore.JsonPatch;
+using System;
 
 namespace Download.Controllers
 {
@@ -32,11 +33,13 @@ namespace Download.Controllers
                 
                  if(result != null)
             {
+                Console.WriteLine("object wasnt null");
                 return Ok(result);
             }
 
                 
                 else{
+                    Console.WriteLine("object was null");
                     return NoContent();
                 }
             }

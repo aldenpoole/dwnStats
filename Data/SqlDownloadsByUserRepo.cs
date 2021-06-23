@@ -23,7 +23,7 @@ namespace dwnStats.Data
 
         
 
-          public IQueryable SearchDownloadsByUserID(int userID)
+          public IQueryable<DownloadByUser> SearchDownloadsByUserID(int userID)
         {
             //IQueryable<UserSession> sessions = from ses in _sessionContext.UserSessions
                  //  where ses.userID == userID
@@ -35,8 +35,8 @@ namespace dwnStats.Data
             for(i = 0; i < q1.Count; i++){
                 q2.Prepend(_context.Downloads.Where(dn => dn.sessionID == q1[i].uid));
             }*/
-
-        var obj = 
+            
+        IQueryable<DownloadByUser> obj = (IQueryable<DownloadByUser>)
             from ses in _sessionContext.UserSessions
             join usr in _userContext.Users
             on ses.userID equals userID
