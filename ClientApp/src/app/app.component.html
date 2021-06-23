@@ -10,22 +10,29 @@
 </div>
 
 <div class="navbar">
-  <img
+
+  <a class="nav-item" [routerLink]="['/']">
+    <img
     width="35"
     id="houseIcon"
     alt="House Icon"
     src="https://image.flaticon.com/icons/png/512/25/25694.png"
-  />
+    />
+  </a>
 
-  <img
+
+  <a class="nav-item" [routerLink]="['/users']">
+    <img
     width="35"
     id="userListIcon"
     alt="User List Icon"
     src="https://image.flaticon.com/icons/png/512/87/87937.png"
-  />
+    />
+  </a>
+
 </div>
 
-<div class="add-form">
+<!-- <div class="add-form">
   <h2>Add User</h2>
   <form>
     <label for="fname">First name:</label><br>
@@ -51,10 +58,15 @@
     <br>
     <input type="button" value="Delete">
     </form>
-</div>
+</div> -->
 
-<div class="users-table">
+<!-- <div class="users-table">
   <h2>View Users</h2>
   <app-users-table></app-users-table>
-</div>
+</div> -->
 
+<!-- <h1>Background Template</h1> -->
+<!-- implement nav bar -->
+<router-outlet></router-outlet>
+
+<!-- <app-dashboard></app-dashboard> -->
