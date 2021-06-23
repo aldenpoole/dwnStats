@@ -11,6 +11,10 @@ namespace dwnStats.Models
         [Key]
         public int userID{get;set;}
 
+        [Key]
+        public int trajectoryID{get;set;}
+
+
 
         [Required]
         public double downloadSize {get;set;}

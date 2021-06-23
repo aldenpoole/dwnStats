@@ -14,14 +14,18 @@ namespace Download.Controllers
     //api commands
     [Route("api/downloads")]
     [ApiController]
-    public class DownloadsController : ControllerBase
+    public class DownloadsByUserController : ControllerBase
     {
         private readonly IDownloadsRepo _repository;
+        private readonly IUserSessionRepo _sessionRepo;
+        private readonly IUserRepo _userRepo;
         private readonly IMapper _mapper;
 
-        public DownloadsController(IDownloadsRepo repository, IMapper mapper)
+        public DownloadsByUserController(IDownloadsRepo repository, IUserRepo userRepo, IUserSessionRepo sessionRepo, IMapper mapper)
         {
             _repository = repository;
+            _userRepo = userRepo;
+            _sessionRepo = sessionRepo;
             _mapper = mapper;
         }
         //GET api/downloads
@@ -30,7 +34,7 @@ namespace Download.Controllers
         {
             var downloadItems = _repository.GetAllDownloads();
 
-            return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(downloadItems));
+            return Ok(downloadItems);
         }
         //GET api/downloads/{id}
         [HttpGet("{uid}", Name="GetUserDownloadsById")]
