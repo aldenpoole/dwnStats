@@ -32,6 +32,7 @@ namespace dwnStats.Data
 
             var obj =  
                 from session in ses
+                where userID == session.userID
                 join user in usr
                 on userID equals user.uid
                 join down in dwn
