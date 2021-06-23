@@ -6,12 +6,12 @@
     alt="Admin Icon"
     src="./assets/person-fill.svg"
   />
-  <span>Hello, Admin | {{dashboard}}</span>
+  <span>Hello, Admin | {{getDocTitle()}}</span>
 </div>
 
 <div class="navbar">
 
-  <a class="nav-item" [routerLink]="['/']">
+  <a class="nav-item" [routerLink]="['/']" (click)="setDocTitle('Dashboard')">
     <img
     width="35"
     id="houseIcon"
@@ -20,7 +20,7 @@
     />
   </a>
 
-  <a class="nav-item" [routerLink]="['/users']">
+  <a class="nav-item" [routerLink]="['/users']" (click)="setDocTitle('Users List')">
     <img
     width="35"
     id="userListIcon"
