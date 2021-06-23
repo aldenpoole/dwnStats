@@ -40,7 +40,7 @@ h6 {
     right: 0;
     width: 60px;
     height: 100vh;
-    display: block;
+    display: flex;
     align-items: center;
     background-color: #2f8be7;
 }
@@ -80,7 +80,7 @@ h6 {
 #userListIcon {
     position: absolute;
     top: 60px;
-    margin-left: 10px;
+    margin-left: 10px; 
 }
 
 #houseIcon:hover {

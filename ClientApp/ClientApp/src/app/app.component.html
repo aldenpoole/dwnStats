@@ -1,0 +1,72 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="30"
+    id="adminIcon"
+    alt="Admin Icon"
+    src="https://cdn2.iconfinder.com/data/icons/web-solid/32/user-512.png"
+  />
+  <span>Hello, Admin | {{dashboard}}</span>
+</div>
+
+<div class="navbar">
+
+  <a class="nav-item" [routerLink]="['/']">
+    <img
+    width="35"
+    id="houseIcon"
+    alt="House Icon"
+    src="https://image.flaticon.com/icons/png/512/25/25694.png"
+    />
+  </a>
+
+
+  <a class="nav-item" [routerLink]="['/users']">
+    <img
+    width="35"
+    id="userListIcon"
+    alt="User List Icon"
+    src="https://image.flaticon.com/icons/png/512/87/87937.png"
+    />
+  </a>
+
+</div>
+
+<!-- <div class="add-form">
+  <h2>Add User</h2>
+  <form>
+    <label for="fname">First name:</label><br>
+    <input type="text"  id="fname" name="fname"><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname"><br>
+    <label for="userid">User ID:</label><br>
+    <input type="text" id="userid" name="userid"><br>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="text" id="password" name="password"><br>
+    <br>
+    <input type="button" value="Add">
+  </form>
+</div>
+
+<div class="delete-form">
+  <h2>Delete User</h2>
+    <form>
+    <label for="userid">User ID:</label><br>
+    <input type="text" id="userid" name="userid"><br>
+    <br>
+    <input type="button" value="Delete">
+    </form>
+</div> -->
+
+<!-- <div class="users-table">
+  <h2>View Users</h2>
+  <app-users-table></app-users-table>
+</div> -->
+
+<!-- <h1>Background Template</h1> -->
+<!-- implement nav bar -->
+<router-outlet></router-outlet>
+
+<!-- <app-dashboard></app-dashboard> -->
