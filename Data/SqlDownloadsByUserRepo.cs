@@ -33,7 +33,7 @@ namespace dwnStats.Data
             var obj =  
                 from session in ses
                 join user in usr
-                on session.userID equals userID
+                on userID equals user.uid
                 join down in dwn
                 on session.uid equals down.sessionID
                 select new DownloadByUser
