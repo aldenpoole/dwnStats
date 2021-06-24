@@ -8,6 +8,7 @@ using dwnStats.Data;
 using AutoMapper;
 using dwnStats.Dtos;
 using Microsoft.AspNetCore.JsonPatch;
+using System;
 
 namespace Download.Controllers
 {
@@ -56,6 +57,21 @@ namespace Download.Controllers
                     return NoContent();
                 }
             }
+        [HttpGet("GetByDateTime/{yyyy}/{mm}/{dd}/{hh}/{min}/{ss}")]
+        public ActionResult GetByDateTime(int yyyy, int mm, int dd, int hh, int min, int ss)
+        {
+                DateTime dateTime = new DateTime(yyyy,mm,dd,hh,min,ss);
+                var result =  _repository.SearchByDateTime(dateTime);
+                if(result != null)
+                {
+                    return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(result));
+                }
+
+                else
+                {
+                    return NoContent();
+                }
+        }
         
     }
 }

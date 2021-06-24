@@ -11,5 +11,6 @@ namespace dwnStats.Data
         bool SaveChanges();
         IEnumerable<Filter> GetAllFilters();
         Filter GetFiltersById(int uid);
+        IEnumerable<DownloadedFilters> SearchCountryName(string countryName);
     }
 }

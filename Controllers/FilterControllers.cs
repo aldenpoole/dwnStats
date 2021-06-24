@@ -43,5 +43,19 @@ namespace Download.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("GetByCountryName/{filterName}")]
+        public ActionResult GetByCountryName(string countryName)
+        {
+                var result =  _repository.SearchCountryName(countryName);
+                if(result != null)
+                {
+                    return Ok(_mapper.Map<IEnumerable<FilterReadDto>>(result));
+                }
+                else
+                {
+                    return NoContent();
+                }    
+        }
     }
 }

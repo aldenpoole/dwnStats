@@ -11,6 +11,8 @@ namespace dwnStats.Data
     public class SqlFilterRepo : IFilterRepo
     {
         private readonly FilterContext _context;
+        private readonly DownloadsContext _dwnContext;
+        private readonly UserSessionContext _sessionContext;
         public SqlFilterRepo(FilterContext context)
         {
             _context = context;
@@ -26,6 +28,32 @@ namespace dwnStats.Data
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public IEnumerable<DownloadedFilters> SearchCountryName(string countryName)
+        {
+            var dwn = _dwnContext.Downloads.ToList();
+            var ses = _sessionContext.UserSessions.ToList();
+
+            var fils = _context.Filters.ToList();
+
+            var obj =
+                from filters in fils
+                where countryName == filters.launchCountry
+                join sessions in ses
+                on filters.uid equals sessions.filterID
+                join down in dwn
+                on sessions.uid equals down.sessionID
+                select new DownloadedFilters
+                    { 
+                        launchCountry = filters.launchCountry,
+                        downloadID = down.uid,
+                        downloadTime = down.downloadTime,
+                        userID = sessions.userID
+                    };
+            
+            return obj;
+       
         }
     }
 }

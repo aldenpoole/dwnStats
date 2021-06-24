@@ -1,6 +1,7 @@
 //Alden Poole
 //Parsons Intern Project 2021
 
+using System;
 using System.Collections.Generic;
 using dwnStats.Models;
 
@@ -12,5 +13,6 @@ namespace dwnStats.Data
         IEnumerable<Downloads> GetAllDownloads();
         Downloads GetDownloadsById(int uid);
         IEnumerable<Downloads> SearchBySessionID(int sessionID);
+        IEnumerable<Downloads> SearchByDateTime(DateTime dateTime);
     }
 }

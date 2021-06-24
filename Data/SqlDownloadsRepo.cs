@@ -34,6 +34,13 @@ namespace dwnStats.Data
                    select tr;
             return downloads.ToList();
         }
+        public IEnumerable<Downloads> SearchByDateTime(DateTime dateTime)
+        {
+            IEnumerable<Downloads> downloads = from tr in _context.Downloads
+                   where tr.downloadTime == dateTime
+                   select tr;
+            return downloads.ToList();
+        }
 
     }
 }
