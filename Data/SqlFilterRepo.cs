@@ -13,9 +13,11 @@ namespace dwnStats.Data
         private readonly FilterContext _context;
         private readonly DownloadsContext _dwnContext;
         private readonly UserSessionContext _sessionContext;
-        public SqlFilterRepo(FilterContext context)
+        public SqlFilterRepo(FilterContext context, DownloadsContext dwnContext, UserSessionContext sessionContext)
         {
             _context = context;
+            _dwnContext = dwnContext;
+            _sessionContext = sessionContext;
         }
         public IEnumerable<Filter> GetAllFilters()
         {
@@ -34,7 +36,6 @@ namespace dwnStats.Data
         {
             var dwn = _dwnContext.Downloads.ToList();
             var ses = _sessionContext.UserSessions.ToList();
-
             var fils = _context.Filters.ToList();
 
             var obj =
