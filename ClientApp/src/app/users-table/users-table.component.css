@@ -3,8 +3,8 @@
 }
 
 .users-table {
-  width: 60%;
-  margin: 20px auto;
+  width: 30%;
+  margin: 5px auto;
   align-self:center;
 }
 
@@ -14,4 +14,8 @@
 
 .mat-row:hover .mat-cell {
   background-color: rgb(223, 223, 223);
+}
+a{
+  color: black;
+  text-decoration: none;
 }

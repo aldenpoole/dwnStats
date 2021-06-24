@@ -1,5 +1,18 @@
 .users-table {
-    width: 80%;
-    margin: 20px auto;
+    width: 50%;
+    margin: 10px auto;
     align-self:center;
+  }
+
+  .mat-row .mat-cell {
+    cursor: pointer;
+  }
+  
+  .mat-row:hover .mat-cell {
+    background-color: rgb(223, 223, 223);
+  }
+
+  a{
+    color: black;
+    font-style: none;
   }
