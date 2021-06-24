@@ -8,6 +8,8 @@ const routes: Routes = [
   {path: '', component:DashboardComponent},
   {path: 'users', component:UsersComponent},
   {path: 'user-profile/:id', component:UserProfileComponent}
+  // {path: "**", component: PageNotFoundComponent}
+  // will need to add page not found component later
 ];
 
 @NgModule({
@@ -15,3 +17,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
