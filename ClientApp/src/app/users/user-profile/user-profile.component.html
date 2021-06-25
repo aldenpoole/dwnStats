@@ -1,1 +1,20 @@
 <p style="width:80%; align-self:center; margin:20px auto">You have selected user {{id}}</p>
+
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>Download Number</th>
+            <th>Download Size</th>
+            <th>Trajectory ID</th>
+            <th>Download Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of UserDownloads; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{dataItem.downloadSize}}GB</td>
+            <td>{{dataItem.trajectoryID}}</td>
+            <td>{{dataItem.downloadTime}}</td>
+        </tr>
+    </tbody>
+</table>

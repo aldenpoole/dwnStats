@@ -4,6 +4,7 @@ import { RegisteredUsers } from "../models/registeredUsers";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 
+//need to use directory file instead of localhost
 const usersUrl = "https://localhost:5001/api/users";
 
 @Injectable({
