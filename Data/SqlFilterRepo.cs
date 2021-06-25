@@ -39,10 +39,10 @@ namespace dwnStats.Data
             var fils = _context.Filters.ToList();
 
             var obj =
-                from filters in fils
-                where countryName == filters.launchCountry
-                join sessions in ses
-                on filters.uid equals sessions.filterID
+                from sessions in ses
+                join filters in fils
+                on sessions.filterID equals filters.uid
+                //where countryName == filters.launchCountry
                 join down in dwn
                 on sessions.uid equals down.sessionID
                 select new DownloadedFilters

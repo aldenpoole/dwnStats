@@ -50,7 +50,7 @@ namespace Download.Controllers
                 var result =  _repository.SearchCountryName(countryName);
                 if(result != null)
                 {
-                    return Ok(_mapper.Map<IEnumerable<FilterReadDto>>(result));
+                    return Ok(_mapper.Map<IEnumerable<DownloadedFilters>>(result));
                 }
                 else
                 {
