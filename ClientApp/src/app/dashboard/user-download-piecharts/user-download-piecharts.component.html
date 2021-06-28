@@ -1,1 +1,12 @@
 <p style="width:80%; align-self:center; margin:20px auto">user-download-piecharts works!</p>
+
+<div class="chart-wrapper" style="height:500px; width:500px;">
+    <canvas baseChart 
+    [data]="pieChartData" 
+    [labels]="pieChartLabels" 
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [legend]="pieChartLegend">
+  </canvas>
+</div>
