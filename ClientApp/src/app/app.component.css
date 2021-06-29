@@ -58,3 +58,37 @@ h6 {
     margin-top: 100px;
     margin-left: 800px;
 }
+
+#houseIcon {
+    position: absolute;
+    top: 10px;
+    margin-left: 10px;
+}
+
+#userListIcon {
+    position: absolute;
+    top: 60px;
+    margin-left: 10px;
+}
+
+#houseIcon:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+#userListIcon:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.navbar {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 60px;
+    height: 100vh;
+    display: block;
+    align-items: center;
+    background-color: #2f8be7;
+}

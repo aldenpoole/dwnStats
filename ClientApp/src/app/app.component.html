@@ -9,7 +9,27 @@
   <span>Hello, Admin | {{getDocTitle()}}</span>
 </div>
 
-<app-nav-bar></app-nav-bar>
+<div class="navbar">
+  <a class="nav-item" [routerLink]="['/']" (click)="setDocTitle('Dashboard')">
+    <img
+    width="35"
+    id="houseIcon"
+    alt="House Icon"
+    src="./assets/house-fill.svg"
+    />
+  </a>
+
+  <a class="nav-item" [routerLink]="['/users']" (click)="setDocTitle('Users List')">
+    <img
+    width="35"
+    id="userListIcon"
+    alt="User List Icon"
+    src="./assets/person-lines-fill.svg"
+    />
+  </a>
+</div>
+
+<!-- <app-nav-bar></app-nav-bar> -->
 <!--<app-dashboard></app-dashboard>-->
 <!-- <div class="add-form">
   <h2>Add User</h2>

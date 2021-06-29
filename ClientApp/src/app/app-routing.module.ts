@@ -5,7 +5,8 @@ import { UsersComponent } from './users/users.component';
 import { UserProfileComponent} from './users/user-profile/user-profile.component'
 
 const routes: Routes = [
-  {path: '', component:DashboardComponent},
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: 'dashboard', component:DashboardComponent},
   {path: 'users', component:UsersComponent},
   {path: 'user-profile/:id', component:UserProfileComponent}
   // {path: "**", component: PageNotFoundComponent}
