@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js'
 
 @Component({
   selector: 'app-data-downloaded-graph',
@@ -11,7 +12,4 @@ export class DataDownloadedGraphComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  //testing remote branch
-
 }
