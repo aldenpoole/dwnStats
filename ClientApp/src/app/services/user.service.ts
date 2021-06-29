@@ -14,5 +14,5 @@ export class UserService {
     return this.http.get(this.APIUrl+'/downloadsbyuser/'+val)
   }
 
-
+  
 }

@@ -27,6 +27,11 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.service.getUserDownloads(id).subscribe(data => {
       this.UserDownloads=data;
     });
+
+    setTimeout(() => { 
+      console.log(this.UserDownloads)
+    }, 2000);
+
   }
 
   ngOnDestroy() {
@@ -34,3 +39,4 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
 }
+
