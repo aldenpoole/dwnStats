@@ -42,15 +42,15 @@ namespace dwnStats.Data
             return downloads.ToList();
         }
 
-         public IEnumerable<Downloads> SearchByDateHour(int yyyy, int mm, int dd, int hh)
+         public IEnumerable<double> GetDownloadSizeByHour(int yyyy, int mm, int dd, int hh)
         {
-            IEnumerable<Downloads> downloads = from dr in _context.Downloads
+            IEnumerable<double> hourDownloadSize = from dr in _context.Downloads
                    where dr.downloadTime.Year == yyyy
                    where dr.downloadTime.Month == mm
                    where dr.downloadTime.Day == dd
                    where dr.downloadTime.Hour == hh
-                   select dr;
-            return downloads.ToList();
+                   select dr.downloadSize;
+            return hourDownloadSize.ToList();
         }
 
     }

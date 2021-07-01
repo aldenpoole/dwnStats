@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js'
+import { map } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,14 +10,38 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DataDownloadedGraphComponent implements OnInit {
 
-  // TotalDownloads: any=[];
-
-
   constructor(private service:UserService) { }
+
+  // DayDownloads: any=[];
+  HourlyDownloadSize: any=[];
 
   ngOnInit() {
     const date = new Date();
     let hour = date.getHours();
+    let day = date.getDay();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+
+
+    // for(let i=0; i<24; i++){
+    //   if(hour === 0) {
+    //     //set the day equal to previous day
+    //     date.setDate(date.getDate() - 1);
+    //     day = date.getDay();
+    //     month = date.getMonth();
+    //     year = date.getFullYear();
+    //     hour = 24;
+    //   }
+
+    //   this.getHoursDownloads(year, month, day, hour);
+    //   hour = hour - 1;
+    // }
+
+    // let datasourse = this.HourlyDownloadSize.reverse();
+    
+
+    
+
 
     //add download size to an array for every hour based on todays date
 
@@ -40,12 +65,13 @@ export class DataDownloadedGraphComponent implements OnInit {
     hourLabels.reverse();
     console.log(hourLabels);
 
+
     const data = {
       labels: hourLabels,
       datasets: [{
         label: 'Download in Past 24 Hours',
         //get total downloads from each hour
-        data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40, 56, 55, 40, 65],
+        data: [],
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1
@@ -58,9 +84,8 @@ export class DataDownloadedGraphComponent implements OnInit {
     });
   }
 
-  // getAllDownloads() {
-  //   this.service.getAllDownloads().subscribe(data => {
-  //     this.TotalDownloads=data;
-  //   });
+  //gets hours downloads, puts into day download array
+  // getHoursDownloads(yyyy:number, mm:number, dd:number, hh:number) {
+
   // }
 }

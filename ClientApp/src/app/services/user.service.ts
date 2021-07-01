@@ -11,8 +11,11 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   getUserDownloads(val:any) {
-    return this.http.get(this.APIUrl+'/downloadsbyuser/'+val)
+    return this.http.get(this.APIUrl+'/downloadsbyuser/'+val);
   }
 
+  getHourDownloads(yyyy:number, mm:number, dd:number, hh:number) {
+    return this.http.get(this.APIUrl+'/GetDownloadSizeByHour/'+ yyyy + '/' + mm + '/' + dd + '/' + hh);
+  }
 
 }
