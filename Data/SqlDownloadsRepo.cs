@@ -42,7 +42,7 @@ namespace dwnStats.Data
             return downloads.ToList();
         }
 
-         public IEnumerable<double> GetDownloadSizeByHour(int yyyy, int mm, int dd, int hh)
+         public double GetDownloadSizeByHour(int yyyy, int mm, int dd, int hh)
         {
             IEnumerable<double> hourDownloadSize = from dr in _context.Downloads
                    where dr.downloadTime.Year == yyyy
@@ -50,7 +50,9 @@ namespace dwnStats.Data
                    where dr.downloadTime.Day == dd
                    where dr.downloadTime.Hour == hh
                    select dr.downloadSize;
-            return hourDownloadSize.ToList();
+
+            double sum = hourDownloadSize.Sum();       
+            return sum;
         }
 
     }

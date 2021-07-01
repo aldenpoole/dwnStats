@@ -14,6 +14,6 @@ namespace dwnStats.Data
         Downloads GetDownloadsById(int uid);
         IEnumerable<Downloads> SearchBySessionID(int sessionID);
         IEnumerable<Downloads> SearchByDateTime(DateTime dateTime);
-        IEnumerable<double> GetDownloadSizeByHour(int yyyy, int mm, int dd, int hh);
+        double GetDownloadSizeByHour(int yyyy, int mm, int dd, int hh);
     }
 }

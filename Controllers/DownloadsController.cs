@@ -77,9 +77,9 @@ namespace Download.Controllers
             public ActionResult GetByDateHour(int yyyy, int mm, int dd, int hh)
             {
                     var result =  _repository.GetDownloadSizeByHour(yyyy,mm,dd,hh);
-                    if(result != null)
+                    if(result != 0)
                     {
-                        return Ok(_mapper.Map<IEnumerable<double>>(result));
+                        return Ok(result);
                     }
                     else
                     {

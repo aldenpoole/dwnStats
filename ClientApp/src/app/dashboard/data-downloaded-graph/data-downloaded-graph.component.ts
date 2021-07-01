@@ -13,7 +13,7 @@ export class DataDownloadedGraphComponent implements OnInit {
   constructor(private service:UserService) { }
 
   // DayDownloads: any=[];
-  HourlyDownloadSize: any=[];
+  DayDownloads: any=[];
 
   ngOnInit() {
     const date = new Date();
@@ -21,6 +21,9 @@ export class DataDownloadedGraphComponent implements OnInit {
     let day = date.getDay();
     let month = date.getMonth();
     let year = date.getFullYear();
+
+    this.getHoursDownloads(2019, 11, 3, 3);
+
 
 
     // for(let i=0; i<24; i++){
@@ -85,7 +88,7 @@ export class DataDownloadedGraphComponent implements OnInit {
   }
 
   //gets hours downloads, puts into day download array
-  // getHoursDownloads(yyyy:number, mm:number, dd:number, hh:number) {
-
-  // }
+  getHoursDownloads(yyyy:number, mm:number, dd:number, hh:number) {
+    
+  }
 }
