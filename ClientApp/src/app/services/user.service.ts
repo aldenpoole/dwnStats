@@ -15,7 +15,7 @@ export class UserService {
   }
 
   getHourDownloads(yyyy:number, mm:number, dd:number, hh:number) {
-    return this.http.get(this.APIUrl+'/GetDownloadSizeByHour/'+ yyyy + '/' + mm + '/' + dd + '/' + hh);
+    return this.http.get(this.APIUrl+'/downloads/GetDownloadSizeByHour/'+ yyyy + '/' + mm + '/' + dd + '/' + hh);
   }
 
 }

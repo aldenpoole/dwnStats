@@ -54,6 +54,5 @@ namespace dwnStats.Data
             double sum = hourDownloadSize.Sum();       
             return sum;
         }
-
     }
 }

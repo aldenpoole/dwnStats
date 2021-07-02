@@ -74,16 +74,16 @@ namespace Download.Controllers
         }
 
             [HttpGet("GetDownloadSizeByHour/{yyyy}/{mm}/{dd}/{hh}")]
-            public ActionResult GetByDateHour(int yyyy, int mm, int dd, int hh)
+            public double GetByDateHour(int yyyy, int mm, int dd, int hh)
             {
-                    var result =  _repository.GetDownloadSizeByHour(yyyy,mm,dd,hh);
+                    double result =  _repository.GetDownloadSizeByHour(yyyy,mm,dd,hh);
                     if(result != 0)
                     {
-                        return Ok(result);
+                        return result;
                     }
                     else
                     {
-                        return NoContent();
+                        return 0.0;
                     }
             }
         

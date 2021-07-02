@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js'
-import { map } from 'rxjs/operators';
+import * as Chart from 'chart.js';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,71 +9,73 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DataDownloadedGraphComponent implements OnInit {
 
-  constructor(private service:UserService) { }
+  HourDownloads: number[] = [];
 
-  // DayDownloads: any=[];
-  DayDownloads: any=[];
+  constructor(private service:UserService) { }
 
   ngOnInit() {
     const date = new Date();
     let hour = date.getHours();
-    let day = date.getDay();
-    let month = date.getMonth();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    if(month === 13) {
+      month = 1;
+    }
     let year = date.getFullYear();
 
-    this.getHoursDownloads(2019, 11, 3, 3);
-
-
-
-    // for(let i=0; i<24; i++){
-    //   if(hour === 0) {
-    //     //set the day equal to previous day
-    //     date.setDate(date.getDate() - 1);
-    //     day = date.getDay();
-    //     month = date.getMonth();
-    //     year = date.getFullYear();
-    //     hour = 24;
-    //   }
-
-    //   this.getHoursDownloads(year, month, day, hour);
-    //   hour = hour - 1;
-    // }
-
-    // let datasourse = this.HourlyDownloadSize.reverse();
-    
 
     
-
-
-    //add download size to an array for every hour based on todays date
-
+    //set past 24 hours for chart x axis
+    let x = hour;
     const hourLabels = [];
     for(let i=0; i<=24; i++) {
-      if(hour>=12) {
-        if(hour===12) {
-          hourLabels.push(hour + "pm");
+      if(x >= 12) {
+        if(x === 12) {
+          hourLabels.push(x + "pm");
         } else {
-          hourLabels.push(hour-12 + "pm");
+          hourLabels.push(x-12 + "pm");
         }
-        hour = hour - 1;
-      } else if (hour < 12 && hour >= 1) {
-        hourLabels.push(hour + "am");
-        hour = hour - 1;
+        x = x - 1;
+      } else if (x < 12 && x >= 1) {
+        hourLabels.push(x + "am");
+        x = x - 1;
       } else {
-        hourLabels.push(hour+12 + "pm");
-        hour = 23;
+        hourLabels.push(x+12 + "pm");
+        x = 23;
       }
     }
     hourLabels.reverse();
     console.log(hourLabels);
 
 
+    //set download size for each hour
+    let y = hour;
+    for(let i=0; i<=24; i++){
+      if(y === 0) {
+        date.setDate(date.getDate() - 1);
+        day = date.getDate();
+        month = date.getMonth() + 1;
+        if(month === 0) {
+          month = 12;
+        }
+        year = date.getFullYear();
+        y = 24;
+      }
+      this.getHoursDownloads(year, month, day, y);
+      y = y - 1;
+    }
+    
+    setTimeout(() => {
+      console.log(this.HourDownloads);
+    }, 500);
+    console.log(this.HourDownloads);
+
+    //create chart
     const data = {
       labels: hourLabels,
       datasets: [{
         label: 'Download in Past 24 Hours',
-        //get total downloads from each hour
-        data: [],
+        data: this.HourDownloads,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1
@@ -87,8 +88,10 @@ export class DataDownloadedGraphComponent implements OnInit {
     });
   }
 
-  //gets hours downloads, puts into day download array
+  //gets hours downloads, puts into hour downloads array
   getHoursDownloads(yyyy:number, mm:number, dd:number, hh:number) {
-    
+    this.service.getHourDownloads(yyyy, mm, dd, hh).subscribe( 
+      (data) => this.HourDownloads.unshift(parseFloat(data.toString()))
+    );
   }
 }
