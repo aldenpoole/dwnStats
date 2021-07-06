@@ -73,17 +73,17 @@ namespace Download.Controllers
                 }
         }
 
-            [HttpGet("GetDownloadSizeByHour/{yyyy}/{mm}/{dd}/{hh}")]
-            public double GetByDateHour(int yyyy, int mm, int dd, int hh)
+            [HttpGet("GetPastDaysDownloads")]
+            public ActionResult GetPastDaysDownloads()
             {
-                    double result =  _repository.GetDownloadSizeByHour(yyyy,mm,dd,hh);
-                    if(result != 0)
+                    var result =  _repository.GetPastDaysDownloads();
+                    if(result != null)
                     {
-                        return result;
+                        return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(result));
                     }
                     else
                     {
-                        return 0.0;
+                        return NoContent();
                     }
             }
         

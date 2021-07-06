@@ -42,17 +42,23 @@ namespace dwnStats.Data
             return downloads.ToList();
         }
 
-         public double GetDownloadSizeByHour(int yyyy, int mm, int dd, int hh)
+         public IEnumerable<Downloads> GetPastDaysDownloads()
         {
-            IEnumerable<double> hourDownloadSize = from dr in _context.Downloads
-                   where dr.downloadTime.Year == yyyy
-                   where dr.downloadTime.Month == mm
-                   where dr.downloadTime.Day == dd
-                   where dr.downloadTime.Hour == hh
-                   select dr.downloadSize;
+            var dwn = _context.Downloads.ToList();
 
-            double sum = hourDownloadSize.Sum();       
-            return sum;
+            DateTime current = DateTime.Now;
+            DateTime previous = current.AddDays(-1);
+
+            Console.WriteLine(current);
+            Console.WriteLine(previous);
+
+
+            var pastDaysDownloads = from dr in dwn
+                   where dr.downloadTime <= current
+                   where dr.downloadTime >= previous
+                   select dr; 
+        
+            return pastDaysDownloads.ToList();
         }
     }
 }

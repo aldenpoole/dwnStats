@@ -11,7 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 export class DataDownloadedGraphComponent implements OnInit {
 
   item!: number;
-  DownloadSizes: any[] = [];
+  DownloadSizes!: number[];
+  labels!: string[];
 
   constructor(private service:UserService) { }
 
@@ -28,7 +29,8 @@ export class DataDownloadedGraphComponent implements OnInit {
 
     //set past 24 hours for chart x axis
     let x = hour;
-    const hourLabels: string[] = [];
+    const hourLabels = [];
+    
     for(let i=0; i<=24; i++) {
       if(x >= 12) {
         if(x === 12) {
@@ -45,49 +47,25 @@ export class DataDownloadedGraphComponent implements OnInit {
         x = 23;
       }
     }
-    hourLabels.reverse();
-
-    //set download size for each hour
-    let y = hour;
-    //console.log("current hour: " + y);
-    for(let i=0; i<=24; i++){
-      if(y === -1) {
-        date.setDate(date.getDate() - 1);
-        day = date.getDate();
-        month = date.getMonth() + 1;
-        if(month === 0) {
-          month = 12;
-        }
-        year = date.getFullYear();
-        y = 23;
-      }
-      //console.log(year+"/"+month+"/"+day+"/"+y);
-      this.getHoursDownloads(year, month, day, y);
-      y = y - 1;
-    }
-
-    
+    this.labels = hourLabels.reverse();
+    console.log(this.labels);
 
 
-    //make async function
-    setTimeout(() => {
-      console.log(this.DownloadSizes);
-      let downloads = this.DownloadSizes.reverse();
-      this.createChart(hourLabels, downloads);
-    }, 1000);
+    this.getPastDaysDownloads();
+    //console.log(this.DownloadSizes);
+
   }
 
   //gets hours downloads, puts into hour downloads array
-  getHoursDownloads(yyyy:number, mm:number, dd:number, hh:number) {
-    this.service.getHourDownloads(yyyy, mm, dd, hh).subscribe(
-      (data) => this.DownloadSizes.push(data)
-    );
-  }
+  getPastDaysDownloads() {
+    this.service.getPastDaysDownloads().subscribe(
+      data => {
+        console.log(data);
+        //this.createChart(this.labels, this.DownloadSizes)
+      })
+    }
 
   createChart(labels:string[], downloadsSizes:number[]) {
-
-    console.log(downloadsSizes);
-
     const data = {
       labels: labels,
       datasets: [{
