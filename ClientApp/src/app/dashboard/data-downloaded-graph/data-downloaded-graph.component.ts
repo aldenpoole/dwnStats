@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as Chart from 'chart.js';
+import { Chart } from 'chart.js';
+import { map, tap } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DataDownloadedGraphComponent implements OnInit {
 
-  HourDownloads: number[] = [];
+  item!: number;
+  DownloadSizes: any[] = [];
 
   constructor(private service:UserService) { }
 
@@ -24,34 +26,32 @@ export class DataDownloadedGraphComponent implements OnInit {
     let year = date.getFullYear();
 
 
-    
     //set past 24 hours for chart x axis
     let x = hour;
-    const hourLabels = [];
+    const hourLabels: string[] = [];
     for(let i=0; i<=24; i++) {
       if(x >= 12) {
         if(x === 12) {
           hourLabels.push(x + "pm");
         } else {
-          hourLabels.push(x-12 + "pm");
+          hourLabels.push(x - 12 + "pm");
         }
         x = x - 1;
       } else if (x < 12 && x >= 1) {
         hourLabels.push(x + "am");
         x = x - 1;
       } else {
-        hourLabels.push(x+12 + "pm");
+        hourLabels.push(x + 12 + "pm");
         x = 23;
       }
     }
     hourLabels.reverse();
-    console.log(hourLabels);
-
 
     //set download size for each hour
     let y = hour;
+    //console.log("current hour: " + y);
     for(let i=0; i<=24; i++){
-      if(y === 0) {
+      if(y === -1) {
         date.setDate(date.getDate() - 1);
         day = date.getDate();
         month = date.getMonth() + 1;
@@ -59,39 +59,48 @@ export class DataDownloadedGraphComponent implements OnInit {
           month = 12;
         }
         year = date.getFullYear();
-        y = 24;
+        y = 23;
       }
+      //console.log(year+"/"+month+"/"+day+"/"+y);
       this.getHoursDownloads(year, month, day, y);
       y = y - 1;
     }
-    
-    setTimeout(() => {
-      console.log(this.HourDownloads);
-    }, 500);
-    console.log(this.HourDownloads);
 
-    //create chart
+    
+
+
+    //make async function
+    setTimeout(() => {
+      console.log(this.DownloadSizes);
+      let downloads = this.DownloadSizes.reverse();
+      this.createChart(hourLabels, downloads);
+    }, 1000);
+  }
+
+  //gets hours downloads, puts into hour downloads array
+  getHoursDownloads(yyyy:number, mm:number, dd:number, hh:number) {
+    this.service.getHourDownloads(yyyy, mm, dd, hh).subscribe(
+      (data) => this.DownloadSizes.push(data)
+    );
+  }
+
+  createChart(labels:string[], downloadsSizes:number[]) {
+
+    console.log(downloadsSizes);
+
     const data = {
-      labels: hourLabels,
+      labels: labels,
       datasets: [{
         label: 'Download in Past 24 Hours',
-        data: this.HourDownloads,
+        data: downloadsSizes,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1
       }]
     };
-
     var myChart = new Chart("myChart", {
       type: 'line',
       data: data
     });
-  }
-
-  //gets hours downloads, puts into hour downloads array
-  getHoursDownloads(yyyy:number, mm:number, dd:number, hh:number) {
-    this.service.getHourDownloads(yyyy, mm, dd, hh).subscribe( 
-      (data) => this.HourDownloads.unshift(parseFloat(data.toString()))
-    );
   }
 }
