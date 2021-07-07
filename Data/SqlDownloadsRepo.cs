@@ -41,24 +41,5 @@ namespace dwnStats.Data
                    select tr;
             return downloads.ToList();
         }
-
-         public IEnumerable<Downloads> GetPastDaysDownloads()
-        {
-            var dwn = _context.Downloads.ToList();
-
-            DateTime current = DateTime.Now;
-            DateTime previous = current.AddDays(-1);
-
-            Console.WriteLine(current);
-            Console.WriteLine(previous);
-
-
-            var pastDaysDownloads = from dr in dwn
-                   where dr.downloadTime <= current
-                   where dr.downloadTime >= previous
-                   select dr; 
-        
-            return pastDaysDownloads.ToList();
-        }
     }
 }

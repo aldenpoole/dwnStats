@@ -53,6 +53,7 @@ namespace dwnStats
             services.AddScoped<IFilterRepo, SqlFilterRepo>();
             services.AddScoped<IDownloadsByUserRepo, SqlDownloadsByUserRepo>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<IDownloadsSizeRepo,SqlDownloadSizeRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

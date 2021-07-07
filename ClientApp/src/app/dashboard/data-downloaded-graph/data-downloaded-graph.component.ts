@@ -9,28 +9,27 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./data-downloaded-graph.component.css']
 })
 export class DataDownloadedGraphComponent implements OnInit {
-
-  item!: number;
-  DownloadSizes!: number[];
   labels!: string[];
+  downloads: any=[];
 
   constructor(private service:UserService) { }
 
   ngOnInit() {
+    this.service.getPastDaysDownloads().subscribe(
+      data => this.downloads = (data)
+    );
+
+    setTimeout(() => {
+      this.getPastDaysDownloads();
+    }, 2000);
+
+
     const date = new Date();
     let hour = date.getHours();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    if(month === 13) {
-      month = 1;
-    }
-    let year = date.getFullYear();
-
 
     //set past 24 hours for chart x axis
-    let x = hour;
     const hourLabels = [];
-    
+    let x = hour;
     for(let i=0; i<=24; i++) {
       if(x >= 12) {
         if(x === 12) {
@@ -43,26 +42,48 @@ export class DataDownloadedGraphComponent implements OnInit {
         hourLabels.push(x + "am");
         x = x - 1;
       } else {
-        hourLabels.push(x + 12 + "pm");
+        hourLabels.push(x + 12 + "am");
         x = 23;
       }
     }
+
     this.labels = hourLabels.reverse();
     console.log(this.labels);
-
-
-    this.getPastDaysDownloads();
-    //console.log(this.DownloadSizes);
-
   }
 
-  //gets hours downloads, puts into hour downloads array
   getPastDaysDownloads() {
-    this.service.getPastDaysDownloads().subscribe(
-      data => {
-        console.log(data);
-        //this.createChart(this.labels, this.DownloadSizes)
-      })
+    const date = new Date();
+    let hour = date.getHours();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    if(month === 13) {
+      month = 1;
+    }
+    let year = date.getFullYear();
+
+    let chartData = [];
+    for(let i=0; i<=24; i++) {
+      let num = 0.0;
+      if(hour === -1) {
+        date.setDate(date.getDate() - 1);
+        day = date.getDate();
+        month = date.getMonth() + 1;
+        if(month === 0) {
+          month = 12;
+        }
+        year = date.getFullYear();
+        hour = 23;
+      }
+      for(let j=0; j<this.downloads.length; j++) {
+        if(parseFloat(this.downloads[j].time.slice(11, 13))  === hour) {
+          num = num + this.downloads[j].downloadSize;
+        }
+      }
+      chartData.push(num);
+      hour = hour - 1;
+    }
+    console.log(chartData);
+    this.createChart(this.labels, chartData.reverse());
     }
 
   createChart(labels:string[], downloadsSizes:number[]) {

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+// import { IDownload } from '../download-size';
+// import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class UserService {
   }
 
   getPastDaysDownloads() {
-    return this.http.get(this.APIUrl+'/downloads/GetPastDaysDownloads');
+    return this.http.get(this.APIUrl+'/downloadsizes');
   }
 
 }

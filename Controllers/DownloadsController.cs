@@ -72,20 +72,6 @@ namespace Download.Controllers
                     return NoContent();
                 }
         }
-
-            [HttpGet("GetPastDaysDownloads")]
-            public ActionResult GetPastDaysDownloads()
-            {
-                    var result =  _repository.GetPastDaysDownloads();
-                    if(result != null)
-                    {
-                        return Ok(_mapper.Map<IEnumerable<DownloadReadDto>>(result));
-                    }
-                    else
-                    {
-                        return NoContent();
-                    }
-            }
         
     }
 }

@@ -14,6 +14,5 @@ namespace dwnStats.Data
         Downloads GetDownloadsById(int uid);
         IEnumerable<Downloads> SearchBySessionID(int sessionID);
         IEnumerable<Downloads> SearchByDateTime(DateTime dateTime);
-        IEnumerable<Downloads> GetPastDaysDownloads();
     }
 }

@@ -7,6 +7,6 @@ namespace dwnStats.Models
     {
         public double downloadSize {get;set;}
 
-        public int hour {get; set;}
+        public DateTime time {get; set;}
     }
 }
