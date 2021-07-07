@@ -1,5 +1,19 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
+  <a [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <img id="menuIcon" src="./assets/three-dots-vertical.svg">
+  </a>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/']" (click)="setDocTitle('Dashboard')">
+      <img id="houseIcon" src="./assets/house-fill.svg" />
+      <span>Dashboard</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/users']" (click)="setDocTitle('Users List')">
+      <img id="userIcon" src="./assets/person-lines-fill.svg" />
+      <span>User List</span>
+    </button>
+    </mat-menu>
+
   <img
     width="35"
     id="adminIcon"
@@ -9,7 +23,6 @@
   <span>Hello, Admin | {{getDocTitle()}}</span>
 </div>
 
-<app-nav-bar></app-nav-bar>
 <!--<app-dashboard></app-dashboard>-->
 <!-- <div class="add-form">
   <h2>Add User</h2>

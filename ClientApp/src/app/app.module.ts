@@ -19,6 +19,8 @@ import { UsersComponent } from './users/users.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { NavBarComponent } from './dashboard/nav-bar/nav-bar.component';
 import { ChartsModule } from 'ng2-charts';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { ChartsModule } from 'ng2-charts';
     MatPaginatorModule,
     MatSortModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [Title, DashboardService, UsersComponent],
   bootstrap: [AppComponent]

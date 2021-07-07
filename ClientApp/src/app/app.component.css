@@ -34,8 +34,26 @@ h6 {
 }
 
 #adminIcon {
-    margin-left: 13px;
+    margin-left: 5px;
     margin-right: 10px;
+}
+
+#menuIcon {
+    margin-left: 10px;
+    width: 25px;
+}
+
+#menuIcon:hover {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+#houseIcon {
+    margin-right: 5px;
+}
+
+#userIcon {
+    margin-right: 5px;
 }
 
 .add-form {
